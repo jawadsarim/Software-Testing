@@ -39,8 +39,8 @@
     {
       "id": "ENV-3",
       "device": "HP Laptop 15s-fq2xxx (Intel Core i7-1165G7, 8 GB RAM)",
-      "os": "Windows 11 Home (build 26300, 64-bit)",
-      "browser": "Microsoft Edge [PLACEHOLDER: version from edge://version]",
+      "os": "Windows 11 Home 26H2 (build 26300.9818, 64-bit)",
+      "browser": "Microsoft Edge 157.0.4341.42 (64-bit, Chromium 157.0.8103.39)",
       "screen": "1920×1080 at 125% scaling",
       "network": "4G-class connection, ~10 Mbps"
     }

@@ -2,6 +2,13 @@
 
 Every change to this repo, newest first, so the history shows how the work was built step by step. Each entry matches one commit.
 
+## 2026-11-09
+
+### 9. Cross-browser testing complete
+- Test environment ENV-3 filled in: Microsoft Edge 157.0.4341.42 on Windows 11 Home 26H2 (build 26300.9818)
+- Edge results: pages, menus, forms and downloads behave as in Chrome; press-release images load correctly
+- Report has no placeholders left
+
 ## 2026-11-08
 
 ### 8. QA report: 50 bugs, security, performance and cross-browser testing
