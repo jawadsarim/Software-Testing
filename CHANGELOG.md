@@ -4,6 +4,11 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-09
 
+### 10. QA report: 61 bugs (Booking Status, Find a Dealer, Online Booking)
+- Logged BUG-051 to BUG-061 (3 High, 27 Medium, 31 Low in total): Booking Status input validation and text, dealer phone formats and map location, missing Rawalpindi in the Test Drive city list, no confirmation after Online Booking submit, 12-digit mobile number accepted
+- 57 of 100 techniques applied
+- Version snapshot v4 in `QA-Report/versions/`
+
 ### 9. Cross-browser testing complete
 - Test environment ENV-3 filled in: Microsoft Edge 157.0.4341.42 on Windows 11 Home 26H2 (build 26300.9818)
 - Edge results: pages, menus, forms and downloads behave as in Chrome; press-release images load correctly

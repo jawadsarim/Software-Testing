@@ -199,7 +199,7 @@
   {
    "name": "Required Field Testing",
    "category": "Test design (black-box)",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Field Length Testing",
@@ -469,7 +469,7 @@
   {
    "name": "Sensitive Data Exposure Testing",
    "category": "Security",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Vulnerability Scanning",

@@ -966,7 +966,7 @@
       "date_found": "8 Nov 2026",
       "environment": "ENV-1",
       "technique": "Accessibility Testing, Colour Contrast Testing, GUI Testing",
-      "description": "The Reset button uses white text on a light grey background (#CCCCCC). Measured from the screenshot, the contrast ratio is 1.61:1, far below the 4.5:1 minimum. The button looks greyed out, so users cannot tell it works.",
+      "description": "The Reset button uses white text on a light grey background (#CCCCCC). Measured from the screenshot, the contrast ratio is 1.61:1, far below the 4.5:1 minimum. The button looks greyed out, so users cannot tell it works. The same low-contrast Reset button appears on the Booking Status page.",
       "preconditions": "None",
       "steps": [
         "Open https://hyundai-nishat.com/book-a-service/",
@@ -1462,6 +1462,303 @@
       "reproducibility": "Always",
       "screenshots": [
         "bug50-lighthouse-seo.png"
+      ]
+    },
+    {
+      "id": "BUG-051",
+      "title": "Booking Status terms end mid-sentence: \"…Provisional Booking Order (PBO) form and\"",
+      "module": "Booking Status page",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Static Testing (Reviews), Content and Spelling Testing, Business Rule Testing",
+      "description": "Term 3, which users must accept before checking their booking, stops at \"as per the terms and conditions outlined in your Provisional Booking Order (PBO) form and\". The clause is unfinished. None of the four terms ends with a full stop.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Booking Status in the blue bar under the banner",
+        "Read Terms & Conditions item 3"
+      ],
+      "test_data": "None",
+      "expected": "Complete, punctuated terms, e.g. \"…in your Provisional Booking Order (PBO) form.\"",
+      "actual": "Item 3 ends with \"form and\"; no item ends with a full stop.",
+      "oracle": "Legal text users must agree to (the checkbox is required) has to be complete; an unfinished clause leaves its meaning unclear.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug51-52-booking-status-form.png"
+      ]
+    },
+    {
+      "id": "BUG-052",
+      "title": "Field hints misuse \"i.e\": \"Enter valid format i.e 1402406\"",
+      "module": "Booking Status page",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Usability Testing",
+      "description": "The PBO No and CNIC/NTN placeholders read \"Enter valid format i.e 1402406\" and \"Enter valid format i.e 12345-6789012-3\". \"i.e.\" means \"that is\", so the hint says the only valid value is the sample; \"e.g.\" (for example) is meant, and the abbreviation is missing its final full stop.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Booking Status in the blue bar under the banner",
+        "Look at the empty PBO No and CNIC/NTN Number fields"
+      ],
+      "test_data": "None",
+      "expected": "\"e.g. 1402406\" and \"e.g. 12345-6789012-3\".",
+      "actual": "\"i.e 1402406\" and \"i.e 12345-6789012-3\".",
+      "oracle": "English usage: \"e.g.\" introduces an example, \"i.e.\" restates the only meaning. The placeholder also disappears once typing starts, so users lose the format hint.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug51-52-booking-status-form.png"
+      ]
+    },
+    {
+      "id": "BUG-053",
+      "title": "Run-on subtitle: \"Your Journey, Our Priority Stay Updated on Your Car Booking!\"",
+      "module": "Booking Status page",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "The Booking Status subtitle joins two sentences with no punctuation: \"Your Journey, Our Priority Stay Updated on Your Car Booking!\"",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Booking Status in the blue bar under the banner",
+        "Read the subtitle under the \"Booking Status\" heading"
+      ],
+      "test_data": "None",
+      "expected": "\"Your journey, our priority. Stay updated on your car booking!\"",
+      "actual": "\"Your Journey, Our Priority Stay Updated on Your Car Booking!\"",
+      "oracle": "English punctuation: two independent sentences need a full stop or dash between them.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug53-booking-status-subtitle.png"
+      ]
+    },
+    {
+      "id": "BUG-054",
+      "title": "Booking Status accepts letters in both PBO No and CNIC/NTN (\"abc\", \"hello\") and submits without any format check",
+      "module": "Booking Status page",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Input Validation Testing, Negative Testing, Equivalence Partitioning, Boundary Value Analysis",
+      "description": "Both field hints ask for a \"valid format\" (PBO No: digits such as 1402406; CNIC: 13 digits as 12345-6789012-3), but the form accepts letters in both fields and submits them to the server, which returns the results page instead of a format error.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Booking Status in the blue bar",
+        "Type abc in PBO No and hello in CNIC/NTN Number",
+        "Tick \"Yes, I agree to terms\" and click Submit",
+        "Repeat with PBO No 12345 and CNIC abcdef"
+      ],
+      "test_data": "Run 1: PBO No abc, CNIC hello. Run 2: PBO No 12345, CNIC abcdef.",
+      "expected": "A message under the field such as \"Enter a 13-digit CNIC (12345-6789012-3) or a valid NTN\"; the form is not submitted.",
+      "actual": "No format error in either run; the form submits and shows \"No booking found with the provided PBO Number and CNIC Number.\"",
+      "oracle": "Equivalence partitioning: a CNIC is 13 digits, so alphabetic input is an invalid class that should be rejected before submission. The field's own hint promises format checking. Server-side lookups with junk values also add needless load.",
+      "reproducibility": "Always (2 of 2 runs)",
+      "screenshots": [
+        "bug54-abc-hello-input.png",
+        "bug54-55-result-page.png"
+      ]
+    },
+    {
+      "id": "BUG-055",
+      "title": "Booking Status result page highlights \"Press Release\" as the active menu item",
+      "module": "Booking Status page – navigation",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Navigation Testing, GUI Testing, State Transition Testing",
+      "description": "After submitting the Booking Status form, the result page (breadcrumb \"Home > Booking Status Details\") shows \"Press Release\" in the main menu as the current section, with the blue underline. The page has nothing to do with press releases.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com and click Booking Status",
+        "Enter any PBO No and CNIC, tick the terms box and click Submit",
+        "Look at the main menu on the result page"
+      ],
+      "test_data": "PBO No: abc; CNIC: hello",
+      "expected": "No main-menu item highlighted (Booking Status is not in the main menu), or the correct section highlighted.",
+      "actual": "\"Press Release\" is highlighted with the active underline.",
+      "oracle": "Navigation consistency: the active menu item tells users where they are. The form page itself highlights nothing, so the result page's state is wrong.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug54-55-result-page.png"
+      ]
+    },
+    {
+      "id": "BUG-056",
+      "title": "Dealer phone numbers use at least six different formats, including an invalid \"92-021-…\" international number",
+      "module": "Find a Dealer – dealership table",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Content and Spelling Testing, Checklist-Based Testing",
+      "description": "Numbers in the Authorized Dealerships table are written in many styles: \"042-32592245\", \"042 111 111 991\", \"+92 48-216-1515\", \"+92 304 111 4468\", ranges such as \"052-3575091-92\" and \"0812471823-25\", and \"92-021-35361464-6\" for City Store Karachi. The last mixes the country code (92) with the trunk zero (021), so dialling it as written fails from abroad. The City Store Lahore card on the same page writes the table's \"042-32592245\" as \"(+92 42) 3259 2245\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Find a Dealer in the main menu",
+        "Scroll to Authorized Dealerships",
+        "Read the Contact No. column for all 27 dealers"
+      ],
+      "test_data": "27 dealer rows",
+      "expected": "One consistent format, e.g. \"+92 21 3536 1464\" or \"021-35361464\", with ranges written as separate numbers.",
+      "actual": "At least six formats; \"92-021-35361464-6\" is not a valid international number.",
+      "oracle": "ITU-T E.123 notation: international format drops the trunk prefix 0 after the country code (+92 21 …). Consistency also helps users who tap numbers on mobile.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug56-58-dealer-table.png"
+      ]
+    },
+    {
+      "id": "BUG-057",
+      "title": "Map beside \"City Store Lahore\" points to the head office in Gulberg, not the store in Johar Town",
+      "module": "Find a Dealer – map",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Integration Testing, Data Integrity Testing, Use Case Testing",
+      "description": "The card at the bottom of the page is titled \"City Store Lahore\" with the address Emporium Mall, Abdul Haque Road, Johar Town. The embedded map next to it shows a pin and place card for \"Hyundai Nishat Motor (Private…), 1-B Aziz Avenue, Canal Rd, Gulberg V\", a different part of Lahore.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Find a Dealer in the main menu",
+        "Scroll to the map at the bottom of the page",
+        "Compare the City Store Lahore card's address with the place shown in the map's top-left box"
+      ],
+      "test_data": "None",
+      "expected": "The map shows the City Store Lahore location at Emporium Mall, Johar Town.",
+      "actual": "The map pin and place card show 1-B Aziz Avenue, Canal Road, Gulberg V.",
+      "oracle": "Data integrity oracle: the map and the card next to it must describe the same place. A customer reading the card and following the map goes to the wrong location.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug57-dealer-map.png"
+      ]
+    },
+    {
+      "id": "BUG-058",
+      "title": "Rawalpindi has a dealer but cannot be chosen on the Test Drive form",
+      "module": "Request a Test Drive form – City list",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Integration Testing, Data Integrity Testing, Equivalence Partitioning, Use Case Testing",
+      "description": "Find a Dealer lists Hyundai Metropolitan in Rawalpindi (Swan Camp, GT Road), and its City filter includes Rawalpindi. The Request a Test Drive City list (Chakwal to Sukkur, 17 cities) has no Rawalpindi, so customers there cannot request a test drive at their local dealer.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/find-a-dealer/ and open the City filter (Rawalpindi is listed; dealer 17 is in Rawalpindi)",
+        "Open https://hyundai-nishat.com/request-a-test-drive/",
+        "Open the City drop-down and look for Rawalpindi"
+      ],
+      "test_data": "City: Rawalpindi",
+      "expected": "Every city with a dealer appears in the Test Drive City list.",
+      "actual": "Rawalpindi is missing from the Test Drive City list.",
+      "oracle": "Data integrity across pages: the dealer directory is the reference list of cities with dealers. Rawalpindi is one of Pakistan's largest cities.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug58-dealer-cities.png",
+        "bug58-testdrive-cities.png"
+      ]
+    },
+    {
+      "id": "BUG-059",
+      "title": "Online Booking gives no confirmation after Submit: the form just reloads empty",
+      "module": "Online Booking form",
+      "severity": "High",
+      "priority": "P1",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Functional Testing, End-to-End Testing, Workflow Testing, Use Case Testing",
+      "description": "After a complete booking is submitted (model, variant, city, dealer, name, email, mobile), the page returns to a blank Online Booking form. No success message, booking or reference number, or next-step information appears, and no error is shown either.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Online Booking in the blue bar",
+        "Select ELANTRA 1.6 SPECIAL EDITION, variant Elantra 1.6 Special Edition, city Karachi, dealer Hyundai-City-Store-Karachi",
+        "Fill Name, Email and Mobile with test values",
+        "Click Submit"
+      ],
+      "test_data": "Model: Elantra 1.6 SE (ex-factory PKR 6,449,000); City: Karachi; Dealer: Hyundai-City-Store-Karachi; test name, email and mobile",
+      "expected": "A confirmation screen with a booking or reference number, what happens next (payment, documents, dealer contact) and confirmation that an email has been sent.",
+      "actual": "The form is cleared and shown again, exactly as on first load. The user cannot tell whether the booking was received.",
+      "oracle": "Use-case oracle and usability heuristic \"visibility of system status\": a transaction worth PKR 6.4 million must confirm success or failure. Without feedback users resubmit (creating duplicates) or assume it failed. The Booking Status page needs a PBO number that this flow never gives.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug59-60-online-booking-before-after.png"
+      ]
+    },
+    {
+      "id": "BUG-060",
+      "title": "Mobile field accepts a 12-digit number (\"032020356578\") on the booking form",
+      "module": "Online Booking form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Boundary Value Analysis, Input Validation Testing, Field Length Testing",
+      "description": "Pakistani mobile numbers are 11 digits (03XX-XXXXXXX), and the field's own placeholder shows 11 X's. The form accepted the 12-digit \"032020356578\" and submitted the booking without an error.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Online Booking in the blue bar",
+        "Fill the booking form",
+        "Type 032020356578 (12 digits) in Mobile",
+        "Click Submit"
+      ],
+      "test_data": "Mobile: 032020356578 (12 digits)",
+      "expected": "\"Enter an 11-digit mobile number (e.g. 03XXXXXXXXX)\"; submission blocked.",
+      "actual": "Accepted without error; the form submitted.",
+      "oracle": "Boundary value analysis: 11 digits is the valid length, so 12 (upper boundary + 1) must be rejected. A wrong number on a car booking means the dealer cannot reach the customer.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug59-60-online-booking-before-after.png"
+      ]
+    },
+    {
+      "id": "BUG-061",
+      "title": "Mobile number hint differs between forms: \"XXXXXXXXXXX\" here, \"XXXX - XXXXXXX\" elsewhere",
+      "module": "Online Booking form",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "GUI Testing, Content and Spelling Testing, Checklist-Based Testing",
+      "description": "The Online Booking Mobile field shows the hint \"XXXXXXXXXXX\" (no separator), while Book a Service and Request a Test Drive show \"XXXX - XXXXXXX\". Users cannot tell whether to type a dash.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Online Booking in the blue bar",
+        "Look at the empty Mobile field",
+        "Compare it with the Mobile field on Book a Service or Request a Test Drive"
+      ],
+      "test_data": "None",
+      "expected": "One mobile format and hint used on every form, e.g. \"03XX-XXXXXXX\".",
+      "actual": "\"XXXXXXXXXXX\" here; \"XXXX - XXXXXXX\" on the other forms.",
+      "oracle": "Consistency across the site's forms (same field, same format), and a hint showing the leading \"03\" helps users enter a valid number.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug61-booking-mobile-placeholder.png"
       ]
     }
   ]
