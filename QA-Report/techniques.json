@@ -29,7 +29,7 @@
   {
    "name": "Exploratory Testing",
    "category": "Functional",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Ad-hoc Testing",
@@ -224,7 +224,7 @@
   {
    "name": "Checklist-Based Testing",
    "category": "Test design (black-box)",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Scenario-Based Testing",
@@ -234,7 +234,7 @@
   {
    "name": "Black-Box Testing",
    "category": "Structural / approach",
-   "applied": false
+   "applied": true
   },
   {
    "name": "White-Box Testing",
@@ -249,7 +249,7 @@
   {
    "name": "Static Testing (Reviews)",
    "category": "Structural / approach",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Unit Testing",

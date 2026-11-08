@@ -15,3 +15,5 @@ All the work done in the course **CSSE 604 Software Testing** (Morning Program 2
 4. Run `./QA-Report/build.sh` → `QA-Report/output/<seat>_<name>_QA.docx` and `.pdf`.
 
 Anything still marked `[PLACEHOLDER: ...]` is highlighted yellow in the Word file.
+
+Earlier versions of the report are kept in [`QA-Report/versions/`](QA-Report/versions/), one PDF per milestone.

@@ -90,7 +90,7 @@ const titlePage = [
   new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 1000 }, children: [...runs("Application under test: ", { size: 26 }), ...runs(app.name, { size: 26, bold: true })] }),
   table(null, [
     ["Submitted by", student.name], ["Seat number", student.seat_number], ["Email ID", student.email],
-    ["Contact number", student.contact], ["Submitted to", course.instructor], ["Date of submission", course.submission_date],
+    ["Contact number", student.contact], ["Submitted to", course.instructor],
   ].map(([k, v]) => [cell(k, 3000, { fill: "EEF2F6", bold: true }), cell(v, 5000)]), [3000, 5000]),
 ];
 
@@ -114,7 +114,7 @@ const body = [
   P(`This report documents the defects found while testing ${isPh(app.name) ? "the selected application" : app.name} as part of the ${course.code} ${course.title} quality assurance assignment. Each defect is recorded on its own page using the standard defect report format from the Lewis textbook, with its severity, reproducible steps, screenshots, environment details and the oracle explaining why it is a bug.`),
   H2("1.2 Application under test"),
   table(null, [
-    ["Application", app.name], ["Type", app.type], ["URL / version", app.url_or_version], ["Testing period", app.testing_period],
+    ["Application", app.name], ["Type", app.type], ["URL / version", app.url_or_version],
   ].map(([k, v]) => [cell(k, 2600, { fill: "EEF2F6", bold: true }), cell(v, CONTENT_W - 2600)]), [2600, CONTENT_W - 2600]),
   spacer(),
   P(app.description),
@@ -185,7 +185,7 @@ bugs.forEach((b, i) => {
   if (b.screenshots && b.screenshots.length) {
     b.screenshots.forEach((s, i) => {
       const f = path.join(BUILD, "screenshots", path.parse(s).name + ".png");
-      if (fs.existsSync(f)) { body.push(image(f, 600, 380)); body.push(caption(`${b.id} — Screenshot ${i + 1}`)); }
+      if (fs.existsSync(f)) { body.push(image(f, 600, 560)); body.push(caption(`${b.id} — Screenshot ${i + 1}`)); }
       else body.push(P(`[PLACEHOLDER: screenshot ${s} not found in QA-Report/screenshots]`));
     });
   } else {

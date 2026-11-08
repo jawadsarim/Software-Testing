@@ -11,32 +11,30 @@
     "code": "CSSE 604",
     "title": "Software Testing",
     "program": "Morning Program 2026",
-    "instructor": "Sir Hussain Saleem",
-    "submission_date": "[PLACEHOLDER: Submission date]"
+    "instructor": "Sir Hussain Saleem"
   },
   "application": {
     "name": "Hyundai Nishat Motors Website",
     "type": "Web application (public corporate and automotive sales/service website)",
     "url_or_version": "https://hyundai-nishat.com",
-    "description": "[PLACEHOLDER: 3–5 sentences on what the application does, who uses it, and why you chose it.]",
-    "testing_period": "[PLACEHOLDER: e.g. 1 Nov 2026 – 9 Nov 2026]"
+    "description": "The Hyundai Nishat Motors website is the official online presence of Hyundai Nishat Motor (Private) Limited, the company that assembles and sells Hyundai vehicles in Pakistan. Customers use it to browse the vehicle line-up and prices, book a vehicle online, check booking status, request a test drive or brochure, book a service appointment, find a dealer and download owner's manuals. It was chosen because it is a live, feature-rich site with many forms and navigation paths, it was not built by the tester, and it serves a large customer base, so its defects have a real impact on users."
   },
   "environments": [
     {
       "id": "ENV-1",
-      "device": "Windows laptop [PLACEHOLDER: make and model]",
-      "os": "Windows 11 (64-bit)",
+      "device": "HP Laptop 15s-fq2xxx (Intel Core i7-1165G7, 8 GB RAM)",
+      "os": "Windows 11 Home (build 26300, 64-bit)",
       "browser": "Google Chrome 156.0.8078.81",
       "screen": "1920×1080 at 125% scaling (1536×864 effective)",
       "network": "4G-class connection, ~10 Mbps"
     },
     {
       "id": "ENV-2",
-      "device": "[PLACEHOLDER: e.g. Samsung Galaxy A54]",
-      "os": "[PLACEHOLDER: e.g. Android 14]",
-      "browser": "[PLACEHOLDER: e.g. Chrome Mobile 130]",
-      "screen": "[PLACEHOLDER: e.g. 1080×2340]",
-      "network": "[PLACEHOLDER: e.g. 4G]"
+      "device": "HP Laptop 15s-fq2xxx, Chrome DevTools device emulation",
+      "os": "Windows 11 Home (build 26300, 64-bit)",
+      "browser": "Google Chrome 156 (mobile viewport)",
+      "screen": "Mobile viewport, ~375 px wide",
+      "network": "4G-class connection, ~10 Mbps"
     }
   ],
   "features": [
@@ -63,22 +61,54 @@
   ],
   "tools": [
     {
-      "name": "Google Chrome DevTools",
-      "purpose": "Inspecting elements, console errors, network requests, device emulation for responsiveness"
+      "name": "Google Chrome 156",
+      "purpose": "Main browser for all functional, navigation, content and layout testing"
+    },
+    {
+      "name": "Chrome DevTools – Device Mode (F12, Ctrl+Shift+M)",
+      "purpose": "Mobile viewport emulation for responsive and mobile-menu testing (ENV-2)"
+    },
+    {
+      "name": "Chrome DevTools – Elements and Console",
+      "purpose": "Inspecting page structure, link targets and console errors"
+    },
+    {
+      "name": "Chrome View Page Source (Ctrl+U)",
+      "purpose": "Static review of the page's HTML; found the exposed developer email (BUG-003)"
     },
     {
       "name": "Google Lighthouse",
       "purpose": "Performance, accessibility, best-practice and SEO audits"
     },
     {
-      "name": "[PLACEHOLDER: Tool name]",
-      "purpose": "[PLACEHOLDER: What you used it for]"
+      "name": "GoFullPage (Chrome extension)",
+      "purpose": "Full-page screenshots of long pages (home page, Owner's Manual, Extended Warranty)"
+    },
+    {
+      "name": "Windows Snipping Tool (Win+Shift+S)",
+      "purpose": "Screenshots of menus and specific screen areas used as bug evidence"
+    },
+    {
+      "name": "Windows System Information (msinfo32)",
+      "purpose": "Recording the test machine's hardware and OS details for the environment table"
+    },
+    {
+      "name": "Microsoft Word / LibreOffice Writer",
+      "purpose": "Writing and exporting this report to .docx and .pdf"
+    },
+    {
+      "name": "Python (Matplotlib) and Mermaid",
+      "purpose": "Drawing the bug-summary graphs and the workflow diagrams"
     }
   ],
   "custom_techniques": [
-    "[PLACEHOLDER: Any technique you created yourself — name and one line on how it works. Delete this line if none.]"
+    "Desktop–Mobile Parity Check: open the same page and menu on desktop and in mobile view side by side, and compare every item, link target and label. Any difference is a candidate bug (found BUG-001 and BUG-005)."
   ],
   "links": [
+    {
+      "title": "Hyundai Nishat Motors website (application under test)",
+      "url": "https://hyundai-nishat.com"
+    },
     {
       "title": "OWASP Top 10 Web Application Security Risks",
       "url": "https://owasp.org/www-project-top-ten/"
@@ -96,34 +126,319 @@
       "url": "https://glossary.istqb.org/"
     },
     {
-      "title": "[PLACEHOLDER: Link title]",
-      "url": "[PLACEHOLDER: URL]"
+      "title": "Chrome DevTools – Simulate mobile devices with Device Mode",
+      "url": "https://developer.chrome.com/docs/devtools/device-mode"
     }
   ],
   "bugs": [
     {
       "id": "BUG-001",
-      "title": "[PLACEHOLDER: Short, specific title, e.g. Login accepts password with leading spaces trimmed silently]",
-      "module": "[PLACEHOLDER: Feature/module, e.g. Login]",
+      "title": "Mobile menu \"Appointment Form\" link opens the Owner's Manual page instead of the service booking form",
+      "module": "Navigation – mobile menu (After Sales)",
       "severity": "High",
-      "priority": "[PLACEHOLDER: P1 / P2 / P3 / P4]",
+      "priority": "P1",
       "status": "New",
-      "date_found": "[PLACEHOLDER: Date]",
-      "environment": "ENV-1",
-      "technique": "[PLACEHOLDER: Technique(s) that found it, e.g. Boundary Value Analysis]",
-      "description": "[PLACEHOLDER: One or two sentences describing the defect.]",
-      "preconditions": "[PLACEHOLDER: e.g. User has a registered account]",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Navigation Testing, Mobile Device Testing, Responsive Design Testing",
+      "description": "On mobile, the only link under \"Service Appointment Request\" is \"Appointment Form\", but it leads to the Owner's Manual page. Mobile users cannot reach the service booking form from the menu.",
+      "preconditions": "Website opened at a mobile screen width",
       "steps": [
-        "[PLACEHOLDER: Step 1, e.g. Open the login page]",
-        "[PLACEHOLDER: Step 2]",
-        "[PLACEHOLDER: Step 3]"
+        "Open https://hyundai-nishat.com on a phone, or in Chrome DevTools device mode (F12, then Ctrl+Shift+M)",
+        "Tap the menu icon (☰) and expand After Sales",
+        "Under \"Service Appointment Request\", tap \"Appointment Form\""
       ],
-      "test_data": "[PLACEHOLDER: Inputs used]",
-      "expected": "[PLACEHOLDER: What should happen]",
-      "actual": "[PLACEHOLDER: What actually happens]",
-      "oracle": "[PLACEHOLDER: Why this is a bug — the requirement, standard, comparable product, or user expectation it violates]",
-      "reproducibility": "[PLACEHOLDER: Always / Sometimes (x of y tries) / Once]",
-      "screenshots": []
+      "test_data": "None",
+      "expected": "The service appointment booking form opens (hyundai-nishat.com/book-a-service/), as the desktop menu's \"Service Appointment\" link does.",
+      "actual": "The Owner's Manual page (hyundai-nishat.com/owners-manual/) opens. No path in the mobile menu leads to the booking form.",
+      "oracle": "The link label and its section heading promise an appointment form. The desktop menu's equivalent link opens the booking form, so the same menu item behaves differently by device: an inconsistency oracle. It blocks a core user task (booking a service) for mobile users.",
+      "reproducibility": "Always (3 of 3 tries)",
+      "screenshots": [
+        "bug01-mobile-menu.png"
+      ]
+    },
+    {
+      "id": "BUG-002",
+      "title": "Spelling error \"Extented Warranty\" in the After Sales menu",
+      "module": "Navigation – After Sales menu",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, GUI Testing, Static Testing (Reviews)",
+      "description": "The After Sales menu lists the warranty page as \"Extented Warranty\". The page it opens is titled \"Extended Warranty\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Hover over or click After Sales in the main menu",
+        "Read the items under Warranty"
+      ],
+      "test_data": "None",
+      "expected": "The menu item reads \"Extended Warranty\".",
+      "actual": "The menu item reads \"Extented Warranty\", on both desktop and mobile menus.",
+      "oracle": "Standard English spelling, and consistency with the destination page, whose heading and breadcrumb both say \"Extended Warranty\".",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug02-desktop-menu.png"
+      ]
+    },
+    {
+      "id": "BUG-003",
+      "title": "Developer's personal email address exposed in the home page source code",
+      "module": "Home page – page source (Instagram feed plugin)",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Sensitive Data Exposure Testing, Security Testing, Grey-Box Testing, Static Testing (Reviews)",
+      "description": "The home page HTML includes the Instagram-feed plugin's settings, which contain \"mail_to_alert\":\"umair.munir@crewlogix.com\": a named individual's address at a third-party development company.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Press Ctrl+U to view the page source",
+        "Press Ctrl+F and search for mail_to_alert"
+      ],
+      "test_data": "Search term: mail_to_alert",
+      "expected": "No personal or developer email addresses appear in public page source; plugin alert settings stay server-side or use a company address.",
+      "actual": "The source shows \"mail_to_alert\":\"umair.munir@crewlogix.com\" (line 1857 in the page source).",
+      "oracle": "OWASP guidance on sensitive data exposure: internal contact details in public code can be harvested for spam and phishing, and reveal the site's vendor. A production site for Hyundai Nishat should not publish a contractor employee's email address.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug03-page-source.png"
+      ]
+    },
+    {
+      "id": "BUG-004",
+      "title": "Open mobile menu does not cover the page: content shows through and overlaps \"Hyundai Promise\"",
+      "module": "Navigation – mobile menu",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Responsive Design Testing, Mobile Device Testing, Layout and Alignment Testing, GUI Testing",
+      "description": "When the mobile menu is expanded, its panel ends before the page content. A car image from the page underneath overlaps the last menu item, \"Hyundai Promise\".",
+      "preconditions": "Website opened at a mobile screen width",
+      "steps": [
+        "Open any page (for example Owner's Manual) at a mobile width",
+        "Tap the menu icon (☰)",
+        "Expand After Sales and scroll to the bottom of the menu"
+      ],
+      "test_data": "None",
+      "expected": "The open menu sits on a solid background above all page content, and every menu item is fully readable and tappable.",
+      "actual": "The \"Hyundai Promise\" item is partly covered by a car image from the page below, and page content continues directly under the menu.",
+      "oracle": "Usability heuristic: an open navigation menu must be fully visible and usable. The desktop menu has a solid panel, so the mobile behaviour is inconsistent.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug01-mobile-menu.png"
+      ]
+    },
+    {
+      "id": "BUG-005",
+      "title": "\"Find a Dealer\" is missing from the mobile menu",
+      "module": "Navigation – mobile menu",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Mobile Device Testing, Navigation Testing, Cross-Platform / OS Compatibility Testing, Checklist-Based Testing",
+      "description": "The desktop main menu has seven items, including Find a Dealer. The mobile menu shows only six: Find a Car, After Sales, Hyundai Pakistan, Press Release, Hyundai Easy Own and Hyundai Promise.",
+      "preconditions": "Website opened at a mobile screen width",
+      "steps": [
+        "Open https://hyundai-nishat.com on desktop and note the main menu items",
+        "Switch to a mobile width and tap the menu icon (☰)",
+        "Compare the two lists"
+      ],
+      "test_data": "None",
+      "expected": "The mobile menu offers the same main sections as desktop, including Find a Dealer.",
+      "actual": "Find a Dealer does not appear in the mobile menu.",
+      "oracle": "Consistency oracle: the desktop menu is the specification of the site's main sections. Finding a dealer is a key task for car buyers, and many of them browse on phones.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug01-mobile-menu.png"
+      ]
+    },
+    {
+      "id": "BUG-006",
+      "title": "Extended Warranty breadcrumb skips the \"After Sales\" level",
+      "module": "Extended Warranty page – breadcrumb",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Navigation Testing, Checklist-Based Testing, GUI Testing",
+      "description": "The Extended Warranty page's breadcrumb reads \"Home > Extended Warranty\", although the page sits under After Sales in the menu.",
+      "preconditions": "None",
+      "steps": [
+        "Open After Sales > Extended Warranty",
+        "Read the breadcrumb under the menu",
+        "Open After Sales > Owner's Manual and compare its breadcrumb"
+      ],
+      "test_data": "None",
+      "expected": "Home > After Sales > Extended Warranty",
+      "actual": "Home > Extended Warranty",
+      "oracle": "Consistency oracle: Owner's Manual, also under After Sales, shows \"Home > After Sales > Owner's Manual\". Breadcrumbs should reflect the site hierarchy.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug06-breadcrumb.png"
+      ]
+    },
+    {
+      "id": "BUG-007",
+      "title": "Stray backtick instead of an apostrophe in \"HNMPL ` s warranty\"",
+      "module": "Extended Warranty page – content",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "The opening paragraph of the Extended Warranty page reads \"backed by HNMPL ` s warranty coverage\", with a backtick surrounded by spaces.",
+      "preconditions": "None",
+      "steps": [
+        "Open After Sales > Extended Warranty",
+        "Read the first bold paragraph below the warranty badge"
+      ],
+      "test_data": "None",
+      "expected": "\"backed by HNMPL's warranty coverage\"",
+      "actual": "\"backed by HNMPL ` s warranty coverage\"",
+      "oracle": "Standard English punctuation for the possessive. The error is in the page's main promotional sentence, so it affects the brand's credibility.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug07-08-warranty-text.png"
+      ]
+    },
+    {
+      "id": "BUG-008",
+      "title": "Missing space in \"up to125,000 KM\"",
+      "module": "Extended Warranty page – content",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "The last benefit bullet on the Extended Warranty page reads \"Offers up to125,000 KM / 5 Years Warranty\".",
+      "preconditions": "None",
+      "steps": [
+        "Open After Sales > Extended Warranty",
+        "Read the bullet list under \"Enjoy peace of mind with Hyundai Extended Warranty\""
+      ],
+      "test_data": "None",
+      "expected": "\"Offers up to 125,000 KM / 5 Years Warranty\"",
+      "actual": "\"Offers up to125,000 KM / 5 Years Warranty\"",
+      "oracle": "Standard typography: a space separates a word from the number that follows it.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug07-08-warranty-text.png"
+      ]
+    },
+    {
+      "id": "BUG-009",
+      "title": "Vehicle line-up differs between the home page and the Owner's Manual page",
+      "module": "Home page vehicles vs Owner's Manual",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Business Rule Testing, Exploratory Testing",
+      "description": "The home page lists \"SANTA FE HYBRID\" and no plain Tucson. The Owner's Manual page lists \"SANTA FE\" (not hybrid) and adds a separate \"TUCSON\". The two pages disagree on which models Hyundai Nishat offers.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com and scroll to the Vehicles section",
+        "Note the model names",
+        "Open After Sales > Owner's Manual and compare the model names"
+      ],
+      "test_data": "None",
+      "expected": "Both pages list the same models with the same names, or the Owner's Manual clearly marks discontinued models.",
+      "actual": "Home: Elantra 1.6 Special Edition, Elantra Hybrid, Sonata, Sonata N Line, Tucson Hybrid, Santa Fe Hybrid, Palisade Hybrid, IONIQ 5, IONIQ 6, Porter H-100 (10 models). Owner's Manual: adds \"TUCSON\" and names \"SANTA FE\" instead of \"SANTA FE HYBRID\" (11 models).",
+      "oracle": "Data integrity oracle: the same product data should match across pages. A Santa Fe Hybrid owner may download the wrong manual, and customers get conflicting information about which models are sold.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug09-home-vehicles.png",
+        "bug09-manual-vehicles.png"
+      ]
+    },
+    {
+      "id": "BUG-010",
+      "title": "\"Trending around you\" tiles cut their captions off mid-sentence",
+      "module": "Home page – Trending around you",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "GUI Testing, Layout and Alignment Testing, Content and Spelling Testing",
+      "description": "Captions at the bottom of the promotional tiles are truncated, for example \"Bring home the SANTA FE Hybrid and\" and \"Choose the TUCSON Hybrid and\", with no ellipsis or way to read the rest.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Scroll to \"Trending around you\"",
+        "Read the captions at the bottom of the second and third tiles"
+      ],
+      "test_data": "None",
+      "expected": "Each caption is shown in full, or ends with an ellipsis and the tile links to the full offer.",
+      "actual": "Captions stop mid-sentence and the rest of the text is hidden.",
+      "oracle": "Usability heuristic: text must not be clipped without an indication. The captions carry the offer details, so users miss the key information.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug10-trending.png"
+      ]
+    },
+    {
+      "id": "BUG-011",
+      "title": "Home page banner still promotes the \"TUCSON Hybrid 2025\"",
+      "module": "Home page – hero banner",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Business Rule Testing, Exploratory Testing",
+      "description": "The main home page carousel shows \"The all-new Hyundai TUCSON Hybrid 2025\" in November 2026.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Watch the hero carousel until the TUCSON Hybrid slide appears"
+      ],
+      "test_data": "None",
+      "expected": "Banners promote current model-year vehicles, or omit the year.",
+      "actual": "The slide calls a 2025 model \"all-new\" in late 2026.",
+      "oracle": "Currency of content: the site footer says \"Copyright 2026\", and an \"all-new\" claim for a previous model year is outdated marketing.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug11-hero.png"
+      ]
+    },
+    {
+      "id": "BUG-012",
+      "title": "Owner's Manual download buttons misaligned in the first row",
+      "module": "Owner's Manual page – layout",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Layout and Alignment Testing, GUI Testing, Visual Regression Testing",
+      "description": "\"ELANTRA 1.6 SPECIAL EDITION\" wraps onto two lines, which pushes its Download button lower than the Download buttons of the other three vehicles in the same row.",
+      "preconditions": "None",
+      "steps": [
+        "Open After Sales > Owner's Manual on a 1920×1080 screen",
+        "Look at the first row of vehicles"
+      ],
+      "test_data": "None",
+      "expected": "All Download buttons in a row line up horizontally, whatever the length of the model name.",
+      "actual": "The first Download button sits about one line lower than the other three.",
+      "oracle": "Visual consistency in a grid layout. Every other row on the page is aligned, so this row is the exception.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug12-manual-alignment.png"
+      ]
     }
   ]
 }

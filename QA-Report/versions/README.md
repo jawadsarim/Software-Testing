@@ -1,0 +1,8 @@
+# Report versions
+
+A snapshot of the QA report (PDF) at each milestone, so the progress is visible without using Git. The current report is always in `../output/`.
+
+| Version | Date | What changed | Pages |
+|---|---|---|---|
+| [v1](v1-2026-11-07-template-and-details.pdf) | 7 Nov 2026 | Report template with student details, application and environment; no bugs yet | 13 |
+| [v2](v2-2026-11-08-first-12-bugs.pdf) | 8 Nov 2026 | First 12 bugs (1 High, 4 Medium, 7 Low), tools, own technique and links completed | 35 |

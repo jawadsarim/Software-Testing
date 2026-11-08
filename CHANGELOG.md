@@ -4,6 +4,13 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-08
 
+### 7. QA report: first 12 bugs and completed details
+- Logged BUG-001 to BUG-012 (1 High, 4 Medium, 7 Low) with steps, expected and actual results, oracle and cropped screenshots
+- Test environments: HP Laptop 15s-fq2xxx on Windows 11 Home (ENV-1) and Chrome DevTools phone view (ENV-2)
+- Filled the application description, tools used, own technique (Desktop–Mobile Parity Check) and helpful links
+- Removed the submission date and testing period; larger screenshots on bug pages
+- New `QA-Report/versions/` folder with a PDF snapshot of each report milestone (v1, v2)
+
 ### 6. Tidy repo: remove internal notes, clean file metadata
 - Removed the internal maintenance-notes file
 - Cleared tool metadata from the Assignment 01 Word file
