@@ -1,0 +1,129 @@
+{
+  "_readme": "Fill in every value marked [PLACEHOLDER: ...], then run ./QA-Report/build.sh. Add one object per bug to 'bugs'. Severity must be one of: Critical, High, Medium, Low.",
+  "student": {
+    "name": "Syed Sarim Jawad Zaidi",
+    "seat_number": "B22110106080",
+    "email": "zaidisarim9@gmail.com",
+    "contact": "0333 3024614",
+    "university": "Department of Computer Science (UBIT), University of Karachi"
+  },
+  "course": {
+    "code": "CSSE 604",
+    "title": "Software Testing",
+    "program": "Morning Program 2026",
+    "instructor": "Sir Hussain Saleem",
+    "submission_date": "[PLACEHOLDER: Submission date]"
+  },
+  "application": {
+    "name": "Hyundai Nishat Motors Website",
+    "type": "Web application (public corporate and automotive sales/service website)",
+    "url_or_version": "https://hyundai-nishat.com",
+    "description": "[PLACEHOLDER: 3–5 sentences on what the application does, who uses it, and why you chose it.]",
+    "testing_period": "[PLACEHOLDER: e.g. 1 Nov 2026 – 9 Nov 2026]"
+  },
+  "environments": [
+    {
+      "id": "ENV-1",
+      "device": "Windows laptop [PLACEHOLDER: make and model]",
+      "os": "Windows 11 (64-bit)",
+      "browser": "Google Chrome 156.0.8078.81",
+      "screen": "1920×1080 at 125% scaling (1536×864 effective)",
+      "network": "4G-class connection, ~10 Mbps"
+    },
+    {
+      "id": "ENV-2",
+      "device": "[PLACEHOLDER: e.g. Samsung Galaxy A54]",
+      "os": "[PLACEHOLDER: e.g. Android 14]",
+      "browser": "[PLACEHOLDER: e.g. Chrome Mobile 130]",
+      "screen": "[PLACEHOLDER: e.g. 1080×2340]",
+      "network": "[PLACEHOLDER: e.g. 4G]"
+    }
+  ],
+  "features": [
+    "Home page: promotional banners, booking pop-up, quick-action links",
+    "Find a Car: vehicle catalogue with category filter (All, Sedan, SUV, Electric, Commercial) and starting prices",
+    "Vehicle model pages: Elantra, Elantra Hybrid, Sonata, Sonata N Line, Tucson Hybrid, Santa Fe, Palisade Hybrid, IONIQ 5, IONIQ 6, Porter H-100",
+    "Online Booking",
+    "Booking Status check",
+    "Request a Test Drive form",
+    "Request a Brochure form",
+    "Service Appointment Request (Book a Service) form",
+    "Find a Dealer (dealer locator)",
+    "Hyundai Easy Own (financing information)",
+    "Hyundai Promise",
+    "After Sales: warranty conditions, extended warranty, genuine parts, lubricants, engine oil",
+    "Hyundai Service: customer promise, dealership facility, free services, periodic maintenance charts, owner's manual",
+    "About Us: overview, corporate message, philosophy",
+    "Press Release & News",
+    "Career page",
+    "Contact Us page",
+    "Email newsletter sign-up",
+    "Footer: legal disclaimer, cookie policy, sitemap, social media links",
+    "myHyundai customer portal (external: myhyundaipakistan.com)"
+  ],
+  "tools": [
+    {
+      "name": "Google Chrome DevTools",
+      "purpose": "Inspecting elements, console errors, network requests, device emulation for responsiveness"
+    },
+    {
+      "name": "Google Lighthouse",
+      "purpose": "Performance, accessibility, best-practice and SEO audits"
+    },
+    {
+      "name": "[PLACEHOLDER: Tool name]",
+      "purpose": "[PLACEHOLDER: What you used it for]"
+    }
+  ],
+  "custom_techniques": [
+    "[PLACEHOLDER: Any technique you created yourself — name and one line on how it works. Delete this line if none.]"
+  ],
+  "links": [
+    {
+      "title": "OWASP Top 10 Web Application Security Risks",
+      "url": "https://owasp.org/www-project-top-ten/"
+    },
+    {
+      "title": "W3C Web Content Accessibility Guidelines (WCAG) 2.1",
+      "url": "https://www.w3.org/TR/WCAG21/"
+    },
+    {
+      "title": "Chrome Lighthouse documentation",
+      "url": "https://developer.chrome.com/docs/lighthouse/overview"
+    },
+    {
+      "title": "ISTQB Glossary",
+      "url": "https://glossary.istqb.org/"
+    },
+    {
+      "title": "[PLACEHOLDER: Link title]",
+      "url": "[PLACEHOLDER: URL]"
+    }
+  ],
+  "bugs": [
+    {
+      "id": "BUG-001",
+      "title": "[PLACEHOLDER: Short, specific title, e.g. Login accepts password with leading spaces trimmed silently]",
+      "module": "[PLACEHOLDER: Feature/module, e.g. Login]",
+      "severity": "High",
+      "priority": "[PLACEHOLDER: P1 / P2 / P3 / P4]",
+      "status": "New",
+      "date_found": "[PLACEHOLDER: Date]",
+      "environment": "ENV-1",
+      "technique": "[PLACEHOLDER: Technique(s) that found it, e.g. Boundary Value Analysis]",
+      "description": "[PLACEHOLDER: One or two sentences describing the defect.]",
+      "preconditions": "[PLACEHOLDER: e.g. User has a registered account]",
+      "steps": [
+        "[PLACEHOLDER: Step 1, e.g. Open the login page]",
+        "[PLACEHOLDER: Step 2]",
+        "[PLACEHOLDER: Step 3]"
+      ],
+      "test_data": "[PLACEHOLDER: Inputs used]",
+      "expected": "[PLACEHOLDER: What should happen]",
+      "actual": "[PLACEHOLDER: What actually happens]",
+      "oracle": "[PLACEHOLDER: Why this is a bug — the requirement, standard, comparable product, or user expectation it violates]",
+      "reproducibility": "[PLACEHOLDER: Always / Sometimes (x of y tries) / Once]",
+      "screenshots": []
+    }
+  ]
+}
