@@ -4,7 +4,7 @@
   {
    "name": "Functional Testing",
    "category": "Functional",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Smoke Testing",
@@ -19,12 +19,12 @@
   {
    "name": "Regression Testing",
    "category": "Functional",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Retesting (Confirmation Testing)",
    "category": "Functional",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Exploratory Testing",
@@ -184,7 +184,7 @@
   {
    "name": "Positive Testing",
    "category": "Test design (black-box)",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Negative Testing",
@@ -204,7 +204,7 @@
   {
    "name": "Field Length Testing",
    "category": "Test design (black-box)",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Special Character Testing",
@@ -219,7 +219,7 @@
   {
    "name": "Date and Time Testing",
    "category": "Test design (black-box)",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Checklist-Based Testing",
@@ -299,7 +299,7 @@
   {
    "name": "Cross-Browser Testing",
    "category": "UI and usability",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Cross-Platform / OS Compatibility Testing",
@@ -404,7 +404,7 @@
   {
    "name": "Security Testing",
    "category": "Security",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Authentication Testing",
@@ -444,12 +444,12 @@
   {
    "name": "HTTPS / SSL Testing",
    "category": "Security",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Security Headers Testing",
    "category": "Security",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Cookie Security Testing",
@@ -474,15 +474,15 @@
   {
    "name": "Vulnerability Scanning",
    "category": "Security",
-   "applied": false
+   "applied": true
   },
   {
    "name": "Compatibility Testing",
    "category": "Other",
-   "applied": false
+   "applied": true
   },
   {
-   "name": "Installation Testing",
+   "name": "SEO Testing",
    "category": "Other",
    "applied": false
   },

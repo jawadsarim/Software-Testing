@@ -35,6 +35,14 @@
       "browser": "Google Chrome 156 (mobile viewport)",
       "screen": "Mobile viewport, ~375 px wide",
       "network": "4G-class connection, ~10 Mbps"
+    },
+    {
+      "id": "ENV-3",
+      "device": "HP Laptop 15s-fq2xxx (Intel Core i7-1165G7, 8 GB RAM)",
+      "os": "Windows 11 Home (build 26300, 64-bit)",
+      "browser": "Microsoft Edge [PLACEHOLDER: version from edge://version]",
+      "screen": "1920×1080 at 125% scaling",
+      "network": "4G-class connection, ~10 Mbps"
     }
   ],
   "features": [
@@ -79,6 +87,14 @@
     {
       "name": "Google Lighthouse",
       "purpose": "Performance, accessibility, best-practice and SEO audits"
+    },
+    {
+      "name": "securityheaders.com (Snyk)",
+      "purpose": "Passive scan of HTTP security headers (BUG-041, BUG-042)"
+    },
+    {
+      "name": "Qualys SSL Labs Server Test",
+      "purpose": "Passive check of HTTPS certificates and TLS configuration (BUG-043)"
     },
     {
       "name": "GoFullPage (Chrome extension)",
@@ -128,6 +144,10 @@
     {
       "title": "Chrome DevTools – Simulate mobile devices with Device Mode",
       "url": "https://developer.chrome.com/docs/devtools/device-mode"
+    },
+    {
+      "title": "OWASP Content Security Policy Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
     }
   ],
   "bugs": [
@@ -166,8 +186,8 @@
       "status": "New",
       "date_found": "8 Nov 2026",
       "environment": "ENV-1",
-      "technique": "Content and Spelling Testing, GUI Testing, Static Testing (Reviews)",
-      "description": "The After Sales menu lists the warranty page as \"Extented Warranty\". The page it opens is titled \"Extended Warranty\".",
+      "technique": "Content and Spelling Testing, GUI Testing, Static Testing (Reviews), Cross-Browser Testing",
+      "description": "The After Sales menu lists the warranty page as \"Extented Warranty\". The page it opens is titled \"Extended Warranty\". Reproduced in Microsoft Edge (ENV-3).",
       "preconditions": "None",
       "steps": [
         "Open https://hyundai-nishat.com",
@@ -180,7 +200,8 @@
       "oracle": "Standard English spelling, and consistency with the destination page, whose heading and breadcrumb both say \"Extended Warranty\".",
       "reproducibility": "Always",
       "screenshots": [
-        "bug02-desktop-menu.png"
+        "bug02-desktop-menu.png",
+        "bug02-edge-menu.png"
       ]
     },
     {
@@ -438,6 +459,1009 @@
       "reproducibility": "Always",
       "screenshots": [
         "bug12-manual-alignment.png"
+      ]
+    },
+    {
+      "id": "BUG-013",
+      "title": "Name field accepts digits only (\"12345\") without any validation error",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Input Validation Testing, Negative Testing, Equivalence Partitioning, Special Character Testing",
+      "description": "The required Name field accepts a value made only of numbers. On submit, every other empty field shows an error, but Name shows none, so a booking can carry an invalid customer name.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Type 12345 in the Name field",
+        "Leave the other fields empty and click Submit",
+        "Look at the message under Name"
+      ],
+      "test_data": "Name: 12345",
+      "expected": "An error such as \"Please enter a valid name (letters only)\" under the Name field.",
+      "actual": "No error under Name; the value 12345 is accepted as a name.",
+      "oracle": "A personal name belongs to the equivalence class of alphabetic text. Digits-only input is an invalid class and should be rejected, as the form already validates other fields.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug13-name-digits.png"
+      ]
+    },
+    {
+      "id": "BUG-014",
+      "title": "Required drop-down fields show no error when left empty",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Required Field Testing, Error Message Testing, Error Handling Testing, Decision Table Testing",
+      "description": "Model, Model Name, Service type, City and Dealer name are all marked required (*). When the form is submitted with them empty, text fields show \"Please fill out this field\" but none of these five drop-downs shows any message.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Leave every field empty (or fill only Name)",
+        "Click Submit",
+        "Compare the messages under text fields with those under the drop-downs"
+      ],
+      "test_data": "All drop-downs left on \"Select\"",
+      "expected": "Each empty required drop-down shows \"Please fill out this field\", like the text fields.",
+      "actual": "Only a general banner, \"One or more fields have an error\", appears. The five drop-downs show no message, so the user cannot tell they still need filling.",
+      "oracle": "Consistency oracle: the form marks these fields with * and validates other required fields inline. Usability guidance (WCAG 3.3.1 Error Identification) says the field in error must be identified to the user.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug14-dropdown-no-errors.png"
+      ]
+    },
+    {
+      "id": "BUG-015",
+      "title": "Form section is headed \"Salutation\" but contains no salutation field",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Usability Testing, Static Testing (Reviews)",
+      "description": "The heading above the booking fields reads \"Salutation\", which means a title such as Mr or Ms. The section holds contact, vehicle and appointment details and has no salutation field. The Request a Test Drive form uses the same \"Salutation\" heading above its Vehicle, City and Dealer fields.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Scroll to the start of the form",
+        "Read the section heading and the fields below it"
+      ],
+      "test_data": "None",
+      "expected": "A heading that describes the section, such as \"Your details\" or \"Appointment details\", or a real Salutation (Mr/Ms) field.",
+      "actual": "The heading \"Salutation\" sits above fields that have nothing to do with a salutation.",
+      "oracle": "Label accuracy: a heading must describe its content. The mismatch suggests a template heading left unchanged.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug15-16-heading-banner.png"
+      ]
+    },
+    {
+      "id": "BUG-016",
+      "title": "Grammar error in the page subtitle: \"Hyundai provide you with booking service\"",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "The subtitle under \"Book a Service\" reads \"Hyundai provide you with booking service for your valuable time.\"",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Read the subtitle under the \"Book a Service\" heading"
+      ],
+      "test_data": "None",
+      "expected": "\"Hyundai provides you with a booking service to save your valuable time.\"",
+      "actual": "\"Hyundai provide you with booking service for your valuable time.\"",
+      "oracle": "English grammar: a singular subject (Hyundai) takes \"provides\", and \"booking service\" needs an article.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug15-16-heading-banner.png"
+      ]
+    },
+    {
+      "id": "BUG-017",
+      "title": "Unit written as \"Odometer (KM's)\" with a wrong apostrophe",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "The Odometer label and placeholder both read \"Odometer (KM's)\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Find the Odometer field in the form"
+      ],
+      "test_data": "None",
+      "expected": "\"Odometer (km)\"",
+      "actual": "\"Odometer (KM's)\" in both the label and the placeholder.",
+      "oracle": "SI unit style: the kilometre symbol is \"km\", and unit symbols take no plural or apostrophe.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug17-18-odometer-comments.png"
+      ]
+    },
+    {
+      "id": "BUG-018",
+      "title": "Comments field is mandatory for a service booking",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Usability Testing, Business Rule Testing, Required Field Testing",
+      "description": "\"Comments (max 2,000 characters)\" is marked required, and the form cannot be submitted without typing something in it.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Fill every field except Comments",
+        "Click Submit"
+      ],
+      "test_data": "Comments: empty",
+      "expected": "Comments are optional; a routine service can be booked without writing a note.",
+      "actual": "\"Please fill out this field\" appears under Comments and the booking is blocked.",
+      "oracle": "Form usability practice: free-text notes should be optional. Forcing them adds effort and leads to filler text such as \"none\" in bookings.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug17-18-odometer-comments.png"
+      ]
+    },
+    {
+      "id": "BUG-019",
+      "title": "VIN field placeholder shows a realistic VIN that looks pre-filled",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Usability Testing, GUI Testing, Error Guessing",
+      "description": "The optional VIN number field shows \"MALAA02HR4M123456\" in grey. It looks like an already-entered value rather than an example.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/ (After Sales > Service Appointment)",
+        "Look at the empty VIN number field"
+      ],
+      "test_data": "None",
+      "expected": "A clearly marked hint, such as \"e.g. MALAA02HR4M123456\" or \"17-character VIN\".",
+      "actual": "A full, realistic VIN is shown as the placeholder with no \"e.g.\".",
+      "oracle": "Placeholder guidance (Nielsen Norman Group): placeholders that look like real data are mistaken for filled fields. Users may skip it or think the site already knows their car.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug19-vin-placeholder.png"
+      ]
+    },
+    {
+      "id": "BUG-020",
+      "title": "Invalid email \"abc@\" gives a misleading message: \"Please enter an email address\"",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Error Message Testing, Input Validation Testing, Boundary Value Analysis, Negative Testing",
+      "description": "When the Email field contains an incomplete address such as \"abc@\", the form says \"Please enter an email address\", as if the field were empty. The message only appears after Submit is clicked, not when the user leaves the field. The same message appears on the Request a Test Drive form.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Type abc@ in the Email field and click into the next field",
+        "Click Submit and read the message under Email"
+      ],
+      "test_data": "Email: abc@",
+      "expected": "A specific message such as \"Please enter a valid email address (e.g. name@example.com)\", shown as soon as the user leaves the field.",
+      "actual": "No message when leaving the field. After Submit: \"Please enter an email address.\", although an address was entered.",
+      "oracle": "Error-message guidelines (WCAG 3.3.3 Error Suggestion): a message should say what is wrong and how to fix it. \"Enter an email address\" is wrong for a field that already holds text.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug20-email-message.png"
+      ]
+    },
+    {
+      "id": "BUG-021",
+      "title": "\"Model Name\" does not depend on \"Model\": it lists model names and can be chosen while Model is empty",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "State Transition Testing, Cause-Effect Graphing, Integration Testing, Decision Table Testing",
+      "description": "Model and Model Name should work as a pair (choose a model, then its version). Instead, Model Name repeats a list of models (Elantra, Sonata, Tucson, Porter, Starex, Staria, Santa Fe, Ioniq, Other) and can be filled while Model is still \"Select\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Leave Model on \"Select\"",
+        "Open the Model Name drop-down and pick Staria"
+      ],
+      "test_data": "Model: empty; Model Name: Staria",
+      "expected": "Model Name stays disabled until a Model is chosen, then lists only that model's versions (for example Elantra → 1.6 Special Edition, Hybrid).",
+      "actual": "Model Name is enabled with Model empty, offers model names rather than versions, and accepts Staria while Model shows nothing.",
+      "oracle": "Dependent-field logic (cause-effect): a child field should only accept values valid for its parent. Two fields asking the same question, with no link, let users send contradictory data.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug21-model-name-list.png",
+        "bug21-model-empty-name-set.png"
+      ]
+    },
+    {
+      "id": "BUG-022",
+      "title": "Model list does not match the current line-up: Palisade missing, Starex and Staria listed",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Business Rule Testing, Equivalence Partitioning",
+      "description": "The service form's model list offers Starex and Staria, which appear nowhere else on the site, and has no Palisade, which is sold on the site (Palisade Hybrid). IONIQ 5 and IONIQ 6 are merged into one \"Ioniq\" entry.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Open the Model Name drop-down",
+        "Compare it with the Vehicles section on the home page"
+      ],
+      "test_data": "None",
+      "expected": "The list covers every model the dealer services, including all current models such as Palisade Hybrid, with the same names as the rest of the site.",
+      "actual": "Palisade is missing; Starex and Staria are listed; IONIQ 5/6 appear only as \"Ioniq\".",
+      "oracle": "Data integrity oracle: the home page and Owner's Manual list Palisade Hybrid, IONIQ 5 and IONIQ 6 as current models. A Palisade owner cannot correctly book a service.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug21-model-name-list.png"
+      ]
+    },
+    {
+      "id": "BUG-023",
+      "title": "Service appointment time allows any 15-minute slot from 00:00 to 23:45",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Boundary Value Analysis, Business Rule Testing, Date and Time Testing",
+      "description": "The time picker offers all 96 slots of the day, including night times such as 03:00, with no link to dealership working hours.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Click the Service appointment time field",
+        "Scroll through the offered times"
+      ],
+      "test_data": "Time: 03:00 and 04:45",
+      "expected": "Only slots within dealership working hours (for example 09:00 to 17:00) can be chosen.",
+      "actual": "All 96 slots from 00:00 to 23:45 are offered in 15-minute steps, and night times such as 04:45 and 20:00 are accepted in the field (screenshots cover the whole list).",
+      "oracle": "Business rule oracle: service centres do not work at night. Accepting a 03:00 booking creates appointments the dealer cannot honour.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug23-time-selected.png",
+        "bug23-time-slots.png"
+      ]
+    },
+    {
+      "id": "BUG-024",
+      "title": "Dealer list is not filtered by the selected City",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Integration Testing, Cause-Effect Graphing, Decision Table Testing",
+      "description": "Dealer name shows every dealer in Pakistan (Chakwal, DG Khan, Gujranwala, Islamabad, Karachi, Lahore, Quetta, Sargodha and more) regardless of the City field.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Leave City on \"Select City\" (or choose a city)",
+        "Open the Dealer name drop-down"
+      ],
+      "test_data": "City: not selected / any city",
+      "expected": "Dealer name is disabled until a city is chosen, then lists only that city's dealers.",
+      "actual": "All dealers nationwide are listed, so a user can pick a city and a dealer in a different city.",
+      "oracle": "Dependent-field logic: the form asks for City first, which only makes sense if it narrows the dealer list. Mismatched city and dealer leads to wrong bookings.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug24-25-dealer-list.png"
+      ]
+    },
+    {
+      "id": "BUG-025",
+      "title": "Dealer names do not show their location (\"Hyundai-South\", \"Hyundai-Premium\", \"Hyundai-Central\")",
+      "module": "Book a Service form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Usability Testing, Content and Spelling Testing",
+      "description": "Many dealers are listed by internal names that give no city or area, for example Hyundai-South, Hyundai-Highway, Hyundai-Central, Hyundai-Premium, Hyundai-Eastern and Hyundai-Metropolitan. Naming is also inconsistent: \"Hyundai-City-Store-Karachi\" and \"Hyundai-City-Store\" both appear.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Open the Dealer name drop-down",
+        "Read the dealer names"
+      ],
+      "test_data": "None",
+      "expected": "Each dealer shows its city and area, for example \"Hyundai Central – Lahore\".",
+      "actual": "Hyphenated internal names with no location, and two similar \"City-Store\" entries.",
+      "oracle": "Usability heuristic (match between system and real world): customers choose a dealer by location, which these labels do not give.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug24-25-dealer-list.png"
+      ]
+    },
+    {
+      "id": "BUG-026",
+      "title": "Test Drive form also accepts digits only (\"12345\") as Full Name",
+      "module": "Request a Test Drive form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Input Validation Testing, Negative Testing, Equivalence Partitioning, Regression Testing",
+      "description": "The same name-validation gap as BUG-013 exists on a second form: Full Name accepts \"12345\" and shows no error, while other fields are flagged.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Type 12345 in Full Name and abc@ in Email",
+        "Click Submit",
+        "Look under Full Name"
+      ],
+      "test_data": "Full Name: 12345",
+      "expected": "\"Please enter a valid name\" under Full Name.",
+      "actual": "No error under Full Name.",
+      "oracle": "Equivalence partitioning: digits-only is an invalid class for a person's name. Finding the defect on a second form shows it is a site-wide validation gap, not a one-off.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug26-27-testdrive-validation.png"
+      ]
+    },
+    {
+      "id": "BUG-027",
+      "title": "Required \"Vehicle\" and \"Salutation\" show no error when empty, although City and Dealer Name do",
+      "module": "Request a Test Drive form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Required Field Testing, Error Message Testing, Decision Table Testing",
+      "description": "On submit with empty drop-downs, City and Dealer Name show \"Please fill out this field\", but Vehicle and Salutation, also marked required (*), show nothing.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Leave all drop-downs on \"Select\"",
+        "Fill Full Name and Email with any text",
+        "Click Submit"
+      ],
+      "test_data": "All drop-downs empty",
+      "expected": "Every empty required drop-down shows \"Please fill out this field\".",
+      "actual": "Errors appear under City and Dealer Name only; Vehicle and Salutation stay unmarked. Only the general banner hints at a problem.",
+      "oracle": "Consistency within the same form: two required drop-downs are validated and two are not. WCAG 3.3.1 requires the field in error to be identified.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug26-27-testdrive-validation.png"
+      ]
+    },
+    {
+      "id": "BUG-028",
+      "title": "Consent text contains an unfilled template blank (\"Order**No:……..………\") and refers to a Vehicle Sales Order",
+      "module": "Request a Test Drive form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Static Testing (Reviews), Content and Spelling Testing, Business Rule Testing",
+      "description": "The Terms & Agreement users must accept says data comes \"through the Vehicle Sales Order / Retail Customer Order**No:……..…………(\"the Order Form\")\". The order-number blank was never filled, and a test-drive request has no sales order. The company name is also written both \"(private)\" and \"(Private)\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Scroll to \"Disclose Personal Data/Information\"",
+        "Read paragraph 1.2 of Terms & Agreement"
+      ],
+      "test_data": "None",
+      "expected": "Consent text written for an online test-drive request, with no unfilled blanks and the company name spelled consistently.",
+      "actual": "Paragraph 1.2 contains \"Order**No:……..…………\" copied from a paper sales-order form; the company appears as both \"(private)\" and \"(Private)\".",
+      "oracle": "Legal text that users consent to must be accurate and complete. Pakistan's data protection practice and general privacy principles require consent to be informed; a template with blanks for another document does not describe this form's processing.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug28-terms-placeholder.png"
+      ]
+    },
+    {
+      "id": "BUG-029",
+      "title": "Salutation list offers only Mr., Mrs. and Other: no Ms. or Miss",
+      "module": "Request a Test Drive form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Usability Testing, Equivalence Partitioning, Checklist-Based Testing",
+      "description": "The required Salutation drop-down lists Mr., Mrs. and Other. Unmarried women, or women who don't use a marital title, have no option except \"Other\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Open the Salutation drop-down"
+      ],
+      "test_data": "None",
+      "expected": "At least Mr., Mrs., Ms. and Miss (and optionally Dr.).",
+      "actual": "Only Mr., Mrs. and Other.",
+      "oracle": "Standard form design practice and common salutation sets include Ms./Miss. Equivalence partitioning of users shows a whole group with no matching value.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug29-salutation-options.png"
+      ]
+    },
+    {
+      "id": "BUG-030",
+      "title": "Page promises a test drive \"appointment\" but the form has no date or time field",
+      "module": "Request a Test Drive form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Use Case Testing, Business Rule Testing, Scenario-Based Testing",
+      "description": "The subtitle says \"request a test drive appointment\", but the form only collects vehicle, city, dealer and contact details. There is no way to choose a preferred date or time.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Read the subtitle under \"Request a Test Drive\"",
+        "Look through the form for a date or time field"
+      ],
+      "test_data": "None",
+      "expected": "A preferred date and time field, as on the Book a Service form, or wording that says the dealer will call to arrange a time.",
+      "actual": "No date or time field; the user cannot say when they want the test drive.",
+      "oracle": "Use-case oracle: an appointment needs a time. The site's own Book a Service form asks for date and time, so this form is inconsistent with it.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug30-testdrive-header.png"
+      ]
+    },
+    {
+      "id": "BUG-031",
+      "title": "\"Vehicle*\" label has no space before the asterisk, unlike every other label",
+      "module": "Request a Test Drive form",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "GUI Testing, Typography and Font Consistency Testing, Visual Regression Testing",
+      "description": "The first label reads \"Vehicle*\", while all other required labels have a space before the asterisk (\"City *\", \"Dealer Name *\").",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/request-a-test-drive/ (home page > Request a Test Drive)",
+        "Look at the labels on the left of the form"
+      ],
+      "test_data": "None",
+      "expected": "\"Vehicle *\", formatted like the other labels.",
+      "actual": "\"Vehicle*\" with no space.",
+      "oracle": "Visual consistency: labels in one form should follow the same format.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug31-vehicle-label.png"
+      ]
+    },
+    {
+      "id": "BUG-032",
+      "title": "Reset button has a colour contrast of 1.6:1 and looks disabled",
+      "module": "Book a Service form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Accessibility Testing, Colour Contrast Testing, GUI Testing",
+      "description": "The Reset button uses white text on a light grey background (#CCCCCC). Measured from the screenshot, the contrast ratio is 1.61:1, far below the 4.5:1 minimum. The button looks greyed out, so users cannot tell it works.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/book-a-service/",
+        "Scroll to the Submit and Reset buttons",
+        "Measure the Reset button's text and background colours (e.g. with Chrome DevTools or a contrast checker)"
+      ],
+      "test_data": "Text #FFFFFF on background #CCCCCC",
+      "expected": "Button text with at least 4.5:1 contrast, styled as an active secondary button.",
+      "actual": "Contrast 1.61:1; the button looks disabled although it is active.",
+      "oracle": "WCAG 2.1 Success Criterion 1.4.3 (Contrast, Minimum, Level AA) requires 4.5:1 for normal text.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug32-reset-contrast.png"
+      ]
+    },
+    {
+      "id": "BUG-033",
+      "title": "Footer links and copyright text fail contrast: grey #676767 on black (3.7:1)",
+      "module": "Site-wide footer",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Accessibility Testing, Colour Contrast Testing",
+      "description": "The footer's links (Worldwide, Contact Us, Legal Disclaimer, Cookie Policy, Sitemap, myHyundai) and the copyright line are grey #676767 on black. The measured ratio is 3.71:1, and the text is small.",
+      "preconditions": "None",
+      "steps": [
+        "Open any page on https://hyundai-nishat.com",
+        "Scroll to the footer",
+        "Check the text and background colours with a contrast checker"
+      ],
+      "test_data": "Text #676767 on background #000000",
+      "expected": "At least 4.5:1 contrast for small footer text.",
+      "actual": "3.71:1 contrast for links and copyright text.",
+      "oracle": "WCAG 2.1 SC 1.4.3 requires 4.5:1 for text smaller than 18 pt (14 pt bold). The footer holds legal links users must be able to read.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug33-footer-contrast.png"
+      ]
+    },
+    {
+      "id": "BUG-034",
+      "title": "The same page is called four different names: \"Service Appointment\", \"Service Appointment Request\", \"Book a Service\" and \"Book a Hyundai Service\"",
+      "module": "Book a Service and Request a Test Drive pages",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Navigation Testing, Content and Spelling Testing, Checklist-Based Testing",
+      "description": "The service booking page is \"Service Appointment\" in the menu, \"Service Appointment Request\" in the breadcrumb, \"Book a Service\" as the heading and \"Book a Hyundai Service | Online…\" in the browser tab. The test-drive page is likewise \"Request a Test Drive\" on the page but \"Book a Hyundai Test Drive\" in the tab.",
+      "preconditions": "None",
+      "steps": [
+        "Open After Sales > Service Appointment",
+        "Compare the menu item, browser tab title, breadcrumb and page heading",
+        "Repeat for Request a Test Drive"
+      ],
+      "test_data": "None",
+      "expected": "One name per page, used in the menu, tab title, breadcrumb and heading.",
+      "actual": "Four names for the service page and two for the test-drive page.",
+      "oracle": "Usability heuristic (consistency and standards): users and search engines rely on matching labels to confirm they reached the right page.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug34-page-naming.png"
+      ]
+    },
+    {
+      "id": "BUG-035",
+      "title": "\"Request a Brochure\" has no request form: the page is a plain download list",
+      "module": "Request a Brochure page",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Use Case Testing, Navigation Testing, Content and Spelling Testing",
+      "description": "The home-page button and page title say \"Request a Brochure\", which suggests a form where the user asks for a brochure. The page only lists vehicles with Download links. The capitalisation also changes from \"Request a Brochure\" on the button to \"Request a brochure\" on the page.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click \"Request a Brochure\" in the blue bar under the banner",
+        "Look for a form on the page"
+      ],
+      "test_data": "None",
+      "expected": "Either a request form (as with Request a Test Drive), or a label that matches what the page does, such as \"Download a Brochure\", with consistent capitalisation.",
+      "actual": "No form; only Download links. Button says \"Request a Brochure\", page says \"Request a brochure\".",
+      "oracle": "Label accuracy: the action name should describe what happens. The sister pages \"Request a Test Drive\" and Book a Service both contain forms, so users expect one here.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug35-brochure-no-form.png"
+      ]
+    },
+    {
+      "id": "BUG-036",
+      "title": "Brochure grid misaligned in two rows (Elantra 1.6 Special Edition and Santa Fe Hybrid)",
+      "module": "Request a Brochure page",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Layout and Alignment Testing, Visual Regression Testing, GUI Testing",
+      "description": "In row 1 the long name \"ELANTRA 1.6 SPECIAL EDITION\" wraps and pushes its Download link down (as on the Owner's Manual page, BUG-012). In row 2 the Santa Fe Hybrid image is shorter, so its name and Download link sit higher than the other three.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click \"Request a Brochure\" in the blue bar under the banner",
+        "Look at the first two rows of vehicles"
+      ],
+      "test_data": "None",
+      "expected": "All names and Download links in a row line up.",
+      "actual": "Row 1: Elantra's Download is lower; row 2: Santa Fe Hybrid's name and Download are higher than the rest.",
+      "oracle": "Visual consistency in a grid. The same component misaligns on two pages, which points to a shared template defect.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug36-brochure-alignment.png"
+      ]
+    },
+    {
+      "id": "BUG-037",
+      "title": "Owner's Manual downloads (17–76 MB) start immediately, with no file size shown and no preview",
+      "module": "Owner's Manual – downloads",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Performance Testing, Volume Testing, Usability Testing, Low Bandwidth / Network Throttling Testing",
+      "description": "Clicking Download on the Owner's Manual page downloads the PDF straight away. The files are very large and the page shows no size: Porter H-100 76.4 MB (272 pages), Elantra 1.6 SE 55.1 MB (573 pages), Tucson Hybrid 30.7 MB (754 pages), IONIQ 5 17.0 MB (703 pages). Unlike the brochure links, which open in a browser tab, there is no preview.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Go to After Sales > Owner's Manual",
+        "Click Download under ELANTRA 1.6 SPECIAL EDITION",
+        "Watch what the browser does"
+      ],
+      "test_data": "Porter_H-100-Owner-Manual.pdf 76,448,008 bytes; Elantra-1_6-SE-Owners-Manual.pdf 55,103,375 bytes; NX4-Hybrid-G1.6T-GDi.pdf 30,702,562 bytes; Ioniq-5-Owner-Manual.pdf 16,995,996 bytes",
+      "expected": "The link shows the file type and size (e.g. \"PDF, 55 MB\") and opens the same way as the brochure links, or offers a preview or chapter-wise download.",
+      "actual": "Files of up to 76 MB download at once with no size shown; the brochure page's links behave differently (open in a tab).",
+      "oracle": "Usability and performance practice: large downloads should state their size, especially for mobile users on metered data. Consistency oracle: download links on the two pages behave differently.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug37-39-owners-manual-pages.png"
+      ]
+    },
+    {
+      "id": "BUG-038",
+      "title": "Elantra and Porter manuals are scanned images: text cannot be searched, selected or read by screen readers",
+      "module": "Owner's Manual – downloads",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Accessibility Testing, Static Testing (Reviews), Usability Testing",
+      "description": "The Elantra 1.6 SE manual (573 pages) has no text layer at all, and the Porter H-100 manual (272 pages, passed through the free online tool iLovePDF) is almost entirely page images. Ctrl+F finds nothing, text cannot be copied, and screen readers cannot read them.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Go to After Sales > Owner's Manual",
+        "Click Download under ELANTRA 1.6 SPECIAL EDITION",
+        "Open the downloaded PDF",
+        "Press Ctrl+F and search for a word visible on the page, such as \"CAUTION\""
+      ],
+      "test_data": "Search term: CAUTION",
+      "expected": "A text-based PDF, or one with OCR, so owners can search a 573-page manual for a topic.",
+      "actual": "Search finds no results on any page; the file contains only page images.",
+      "oracle": "WCAG 2.1 SC 1.1.1 (Non-text Content) and PDF accessibility practice (PDF/UA) require real text. A 573-page reference document that cannot be searched defeats its purpose.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug37-39-owners-manual-pages.png"
+      ]
+    },
+    {
+      "id": "BUG-039",
+      "title": "Owner's manuals are generic, dated editions written for left-hand-drive cars (Elantra 2020, IONIQ 5 2022)",
+      "module": "Owner's Manual – downloads",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Business Rule Testing, Data Integrity Testing, Static Testing (Reviews)",
+      "description": "The manual's cover does not name any model, its copyright is 2020, and the cover warns that \"some models are equipped with Right-Hand Drive (RHD). The explanations and illustrations for some operations in RHD models are opposite of those written in this manual.\" Cars sold in Pakistan are right-hand drive. The IONIQ 5 manual (created 2022) and Tucson Hybrid manual (2024) carry the same left-hand-drive warning on their covers.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Go to After Sales > Owner's Manual",
+        "Click Download under ELANTRA 1.6 SPECIAL EDITION",
+        "Open the downloaded PDF",
+        "Read the cover page and the Foreword (page F4)"
+      ],
+      "test_data": "None",
+      "expected": "A manual for the Elantra 1.6 Special Edition as sold in Pakistan: model named, current edition, written for right-hand drive.",
+      "actual": "Generic Hyundai manual, \"Copyright 2020\", no model named, written for left-hand drive with a note that RHD operations are reversed.",
+      "oracle": "Data integrity oracle: the link is labelled for a specific 2026 Pakistan model. Pakistan drives on the left with RHD cars, so the manual's instructions and illustrations are mirrored for every local owner.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug37-39-owners-manual-pages.png"
+      ]
+    },
+    {
+      "id": "BUG-040",
+      "title": "Tucson Hybrid manual's text layer is corrupted: searching or copying gives gibberish",
+      "module": "Owner's Manual – downloads",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Accessibility Testing, Static Testing (Reviews)",
+      "description": "The Tucson Hybrid manual (downloaded as NX4-Hybrid-G1.6T-GDi.pdf) shows normal text on screen, but its hidden text layer uses a broken font encoding. Copying \"OWNER'S MANUAL\" gives \"2:1(5Ŕ60$18$/\", so Ctrl+F cannot find ordinary words in its 754 pages and screen readers read nonsense.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Go to After Sales > Owner's Manual",
+        "Click Download under TUCSON HYBRID and open the PDF",
+        "Select and copy the text \"OWNER'S MANUAL\" on the cover page and paste it anywhere, or press Ctrl+F and search for \"Maintenance\""
+      ],
+      "test_data": "Search term: Maintenance",
+      "expected": "Copied text matches what is on the page; searching for \"Maintenance\" finds the word.",
+      "actual": "Copied text is shifted characters (\"Operation\" becomes \"2SHUDWLRQ\"); searching for real words finds nothing.",
+      "oracle": "PDF accessibility practice (PDF/UA) and WCAG 2.1 SC 1.1.1 require a text layer that matches the visible text. The other manuals on the same page (e.g. IONIQ 5) extract correctly, so this file is defective.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug40-tucson-manual-garbled.png"
+      ]
+    },
+    {
+      "id": "BUG-041",
+      "title": "Content-Security-Policy allows 'unsafe-inline' and 'unsafe-eval' scripts, weakening protection against XSS",
+      "module": "Site-wide – HTTP security headers",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Security Headers Testing, Security Testing, Vulnerability Scanning, Cross-Site Scripting (XSS) Testing",
+      "description": "The site sends a Content-Security-Policy, but its script-src includes 'unsafe-inline' and 'unsafe-eval'. These two keywords let inline scripts and eval() run, which removes most of the protection CSP gives against cross-site scripting. securityheaders.com caps the grade because of it. (Found with a passive scan only; no attack was attempted.)",
+      "preconditions": "None",
+      "steps": [
+        "Open https://securityheaders.com",
+        "Enter hyundai-nishat.com and click Scan",
+        "Read the Warnings section and the Content-Security-Policy raw header"
+      ],
+      "test_data": "Scan of https://hyundai-nishat.com/ on 8 Nov 2026, 13:31 UTC",
+      "expected": "script-src limited to 'self' and named hosts, using nonces or hashes for inline scripts, with no 'unsafe-inline' or 'unsafe-eval'.",
+      "actual": "script-src 'self' https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval'; warning: \"This policy contains 'unsafe-inline' which is dangerous… 'unsafe-eval' which is dangerous\".",
+      "oracle": "OWASP Content Security Policy Cheat Sheet and the scanner's own warning: unsafe-inline and unsafe-eval defeat CSP's main purpose. Combined with the weak name and comment validation found on the forms (BUG-013, BUG-026), input handling deserves review.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug41-csp-unsafe.png"
+      ]
+    },
+    {
+      "id": "BUG-042",
+      "title": "Server header reveals the exact web server version: \"Apache/2.4.58 (Ubuntu)\"",
+      "module": "Site-wide – HTTP response headers",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Security Headers Testing, Sensitive Data Exposure Testing, Security Testing",
+      "description": "Every response includes \"Server: Apache/2.4.58 (Ubuntu)\", telling anyone the web server software, its exact version and the operating system.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://securityheaders.com and scan hyundai-nishat.com",
+        "Read the Server row in Raw Headers (or check the Network tab in Chrome DevTools)"
+      ],
+      "test_data": "Scan of https://hyundai-nishat.com/ on 8 Nov 2026",
+      "expected": "A generic Server value (e.g. \"Apache\") or no Server header.",
+      "actual": "Server: Apache/2.4.58 (Ubuntu)",
+      "oracle": "OWASP guidance on information leakage (fingerprinting): exact version numbers let attackers look up known vulnerabilities for that version. securityheaders.com flags it under Additional Information.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug42-server-header.png"
+      ]
+    },
+    {
+      "id": "BUG-043",
+      "title": "Second SSL certificate (served to clients without SNI) does not match hyundai-nishat.com and is reported as not trusted",
+      "module": "Site-wide – HTTPS / SSL",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "HTTPS / SSL Testing, Security Testing, Compatibility Testing",
+      "description": "The site scores A+ on SSL Labs and its main certificate is valid. However, the server also presents a second certificate, issued only for www.hyundai-nishat.com, to clients that do not send SNI. For the domain hyundai-nishat.com, SSL Labs marks it \"Alternative names … MISMATCH\" and \"Trusted: No, NOT TRUSTED\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://www.ssllabs.com/ssltest/",
+        "Enter hyundai-nishat.com and wait for the report",
+        "Scroll to the second certificate and read Alternative names and Trusted"
+      ],
+      "test_data": "SSL Labs scan, 8 Nov 2026, 13:33 UTC",
+      "expected": "Every certificate the server can present covers both hyundai-nishat.com and www.hyundai-nishat.com.",
+      "actual": "Overall A+, but the second certificate lists only www.hyundai-nishat.com: \"MISMATCH\" and \"NOT TRUSTED\" for hyundai-nishat.com.",
+      "oracle": "Certificate hostname matching (RFC 6125): a certificate must name the host being visited. Older clients that do not support SNI would see a certificate error instead of the site.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug43-ssl-cert2-mismatch.png"
+      ]
+    },
+    {
+      "id": "BUG-044",
+      "title": "Home page is very slow on mobile: Lighthouse Performance 48, main content appears after 25.1 s",
+      "module": "Home page – performance",
+      "severity": "High",
+      "priority": "P1",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Performance Testing, Page Load Speed Testing, Low Bandwidth / Network Throttling Testing",
+      "description": "In a clean Incognito run (no extensions) on mobile, the home page scores 48/100 for Performance. Largest Contentful Paint (when the main content becomes visible) is 25.1 s and Speed Index 5.8 s; the filmstrip shows a blank white screen for the first several frames. Render-blocking requests add about 1.4 s. An earlier run with extensions scored 38 with LCP 19.3 s, so the problem is consistent.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load"
+      ],
+      "test_data": "Lighthouse 13, mobile, Chrome Incognito, 8 Nov 2026 18:46",
+      "expected": "Performance score of 90+ and Largest Contentful Paint under 2.5 s (Google's \"good\" threshold).",
+      "actual": "Performance 48; LCP 25.1 s; Speed Index 5.8 s; First Contentful Paint 2.6 s; Total Blocking Time 100 ms.",
+      "oracle": "Google Core Web Vitals thresholds: LCP ≤ 2.5 s is good, > 4.0 s is poor. At 25.1 s, ten times the target, mobile visitors wait a long time for the page and many will leave.",
+      "reproducibility": "Always (2 of 2 runs)",
+      "screenshots": [
+        "bug44-45-lighthouse-incognito.png",
+        "bug44-49-lighthouse-filmstrip.png"
+      ]
+    },
+    {
+      "id": "BUG-045",
+      "title": "Page layout jumps while loading: Cumulative Layout Shift 0.367",
+      "module": "Home page – performance",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Performance Testing, Visual Regression Testing, Usability Testing",
+      "description": "As the home page loads, content moves around: Lighthouse lists \"layout shift culprits\". Cumulative Layout Shift is 0.367 in both runs, including the clean Incognito run, almost four times the 0.1 limit for a good score.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load"
+      ],
+      "test_data": "Lighthouse mobile run",
+      "expected": "CLS of 0.1 or less, with images and banners given fixed sizes so nothing moves.",
+      "actual": "CLS 0.367; Lighthouse flags layout shift culprits.",
+      "oracle": "Google Core Web Vitals: CLS ≤ 0.1 is good, > 0.25 is poor. Shifting content makes users tap the wrong element.",
+      "reproducibility": "Always (2 of 2 runs)",
+      "screenshots": [
+        "bug44-45-lighthouse-incognito.png"
+      ]
+    },
+    {
+      "id": "BUG-046",
+      "title": "Home page downloads 6 MB, with unoptimised images and no long-term caching",
+      "module": "Home page – performance",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Performance Testing, Volume Testing, Low Bandwidth / Network Throttling Testing",
+      "description": "Lighthouse reports a total network payload of 6,091 KiB. It estimates savings of 3,233 KiB from better image delivery, 3,858 KiB from proper cache lifetimes, 52 KiB of unused CSS, 29 KiB of unused JavaScript and 16 KiB of legacy JavaScript. JavaScript execution takes 2.2 s and main-thread work 5.7 s.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load",
+        "Expand Insights and Diagnostics"
+      ],
+      "test_data": "Lighthouse mobile run",
+      "expected": "A home page well under 2 MB, images served in modern formats at the right size, and static files cached for a long time.",
+      "actual": "6,091 KiB payload; ~3.2 MB of image savings and ~3.9 MB of caching savings available.",
+      "oracle": "Lighthouse \"Avoid enormous network payloads\" audit and web performance practice; a 6 MB page is costly and slow on Pakistani mobile data connections.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug44-lighthouse-insights.png"
+      ]
+    },
+    {
+      "id": "BUG-047",
+      "title": "Accessibility audit failures: unnamed dialog, unnamed links, low contrast and skipped heading levels",
+      "module": "Home page – accessibility",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Accessibility Testing, Screen Reader Testing, Colour Contrast Testing",
+      "description": "Lighthouse Accessibility scores 90 but lists four failed checks: elements with role=\"dialog\" have no accessible name (the booking pop-up), links have no discernible name (icon-only links such as social media), text does not have enough contrast, and headings skip levels.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load",
+        "Scroll to the Accessibility section"
+      ],
+      "test_data": "Lighthouse mobile run",
+      "expected": "All four checks pass: dialogs and links have names screen readers can announce, contrast meets 4.5:1, and headings go in order (h1, h2, h3).",
+      "actual": "Four failed accessibility checks.",
+      "oracle": "WCAG 2.1 SC 4.1.2 (Name, Role, Value), 1.4.3 (Contrast) and 1.3.1 (Info and Relationships). Screen-reader users hear \"link\" or \"dialog\" with no description.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug47-lighthouse-accessibility.png"
+      ]
+    },
+    {
+      "id": "BUG-048",
+      "title": "Browser errors are logged to the console on the home page",
+      "module": "Home page – JavaScript",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Error Handling Testing, Grey-Box Testing, Performance Testing",
+      "description": "Lighthouse Best Practices (92) fails \"Browser errors were logged to the console\" and \"Issues were logged in the Issues panel in Chrome DevTools\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load",
+        "Scroll to Best Practices",
+        "Open the Console tab in DevTools to see the errors"
+      ],
+      "test_data": "Lighthouse mobile run",
+      "expected": "No JavaScript errors or DevTools issues on page load.",
+      "actual": "Console errors and DevTools issues are reported.",
+      "oracle": "Lighthouse Best Practices audit: console errors point to broken scripts or failed requests that can break features silently.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug48-lighthouse-console-errors.png"
+      ]
+    },
+    {
+      "id": "BUG-049",
+      "title": "\"Booking your Hyundai?\" pop-up covers the home page on every visit, even on mobile",
+      "module": "Home page – pop-up",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "Usability Testing, Mobile Device Testing, Static Testing (Reviews), Session Management Testing, Cross-Browser Testing",
+      "description": "About one second after the home page loads, a large pop-up about booking documents covers the page. In phone view it hides the banner and most of the screen. The page source shows the pop-up (pum-3109) is set to auto-open after 1,000 ms with no cookie, so it returns on every visit even after being closed. Cross-browser check: the same pop-up opens on desktop in Microsoft Edge (ENV-3), covering the middle of the home page.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in phone view (F12, Ctrl+Shift+M)",
+        "Wait one second",
+        "Close the pop-up, reload the page"
+      ],
+      "test_data": "Pop-up settings in source: \"triggers\":[{\"type\":\"auto_open\",\"settings\":{\"cookie_name\":\"\",\"delay\":\"1000\"}}],\"cookies\":[]",
+      "expected": "Booking information shown on the booking page, or a pop-up that appears once and is remembered after the user closes it.",
+      "actual": "The pop-up appears on every load and covers most of the mobile screen.",
+      "oracle": "Google's guidance on intrusive interstitials (pop-ups that cover the main content on mobile hurt usability and search ranking). Usability heuristic: user control and freedom — a dismissed message should stay dismissed.",
+      "reproducibility": "Always (Chrome mobile view and Edge desktop)",
+      "screenshots": [
+        "bug49-mobile-popup.png",
+        "bug49-edge-popup.png",
+        "bug44-49-lighthouse-filmstrip.png",
+        "bug03-page-source.png"
+      ]
+    },
+    {
+      "id": "BUG-050",
+      "title": "SEO audit: links without descriptive text and links search engines cannot crawl",
+      "module": "Home page – SEO",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "8 Nov 2026",
+      "environment": "ENV-2",
+      "technique": "SEO Testing, Static Testing (Reviews)",
+      "description": "Lighthouse SEO scores 85 and fails \"Links do not have descriptive text\" (1 link found, e.g. generic text such as \"Read more\") and \"Links are not crawlable\" (links that use JavaScript or \"#\" instead of a real address).",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com in Chrome",
+        "Press F12 and open the Lighthouse tab",
+        "Select Mobile and all four categories, then click Analyze page load",
+        "Scroll to the SEO section"
+      ],
+      "test_data": "Lighthouse mobile run",
+      "expected": "Every link has descriptive text and a real href that search engines can follow.",
+      "actual": "Two failed SEO checks.",
+      "oracle": "Google Search Central link best practices: crawlable links need an href with a URL, and link text should describe the destination.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug50-lighthouse-seo.png"
       ]
     }
   ]

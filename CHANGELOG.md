@@ -4,6 +4,12 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-08
 
+### 8. QA report: 50 bugs, security, performance and cross-browser testing
+- Logged BUG-013 to BUG-050 (2 High, 23 Medium, 25 Low in total): Book a Service, Test Drive and Brochure pages, owner's manual downloads, security headers, SSL, Lighthouse performance and accessibility
+- Added test environment ENV-3 (Microsoft Edge) and cross-browser results
+- Added tools (securityheaders.com, SSL Labs) and the OWASP CSP link; 55 of 100 techniques applied
+- Version snapshot v3 in `QA-Report/versions/`
+
 ### 7. QA report: first 12 bugs and completed details
 - Logged BUG-001 to BUG-012 (1 High, 4 Medium, 7 Low) with steps, expected and actual results, oracle and cropped screenshots
 - Test environments: HP Laptop 15s-fq2xxx on Windows 11 Home (ENV-1) and Chrome DevTools phone view (ENV-2)
