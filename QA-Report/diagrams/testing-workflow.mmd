@@ -1,0 +1,15 @@
+%%{init: {'themeVariables': {'fontSize': '20px'}}}%%
+flowchart TB
+  subgraph P1 [Planning]
+    direction LR
+    A[Feature analysis] --> B[Technique selection] --> C[Test design] --> D[Environment setup]
+  end
+  subgraph P2 [Execution and reporting]
+    direction LR
+    E[Execute tests] --> F{Defect?}
+    F -- Yes --> G[Log bug with steps,<br/>screenshots, oracle] --> H[Severity &<br/>priority] --> I[Retest &<br/>regression]
+    F -- No --> I
+    I -. next feature .-> E
+    I --> K[Final bug report]
+  end
+  P1 --> P2

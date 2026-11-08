@@ -1,0 +1,13 @@
+%%{init: {'themeVariables': {'fontSize': '20px'}}}%%
+flowchart LR
+  N[New] --> A[Assigned]
+  A --> O[Open]
+  O --> F[Fixed]
+  F --> R[Retest]
+  R -- Passes --> V[Verified]
+  V --> C[Closed]
+  R -- Fails --> RO[Reopened]
+  RO --> A
+  O --> D[Deferred]
+  O --> RJ[Rejected / Not a bug]
+  O --> DP[Duplicate]

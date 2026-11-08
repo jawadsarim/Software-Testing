@@ -1,0 +1,505 @@
+{
+ "_readme": "Set applied to true for every technique you used. A technique is also marked applied automatically when a bug's 'technique' field mentions its name.",
+ "techniques": [
+  {
+   "name": "Functional Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Smoke Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Sanity Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Regression Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Retesting (Confirmation Testing)",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Exploratory Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Ad-hoc Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Monkey Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Gorilla Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "End-to-End Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Integration Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "System Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "User Acceptance Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Alpha Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Beta Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "API Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Database Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Data Integrity Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Business Rule Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Workflow Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Navigation Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Broken Link Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Search Functionality Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Error Handling Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Error Message Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Payment / Transaction Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Session Management Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Interrupt Testing",
+   "category": "Functional",
+   "applied": false
+  },
+  {
+   "name": "Boundary Value Analysis",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Equivalence Partitioning",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Decision Table Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "State Transition Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Use Case Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Cause-Effect Graphing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Pairwise (All-Pairs) Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Error Guessing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Positive Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Negative Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Input Validation Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Required Field Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Field Length Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Special Character Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Null / Empty Input Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Date and Time Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Checklist-Based Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Scenario-Based Testing",
+   "category": "Test design (black-box)",
+   "applied": false
+  },
+  {
+   "name": "Black-Box Testing",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "White-Box Testing",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "Grey-Box Testing",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "Static Testing (Reviews)",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "Unit Testing",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "Component Testing",
+   "category": "Structural / approach",
+   "applied": false
+  },
+  {
+   "name": "GUI Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Usability Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Accessibility Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Colour Contrast Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Keyboard Navigation Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Screen Reader Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Responsive Design Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Cross-Browser Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Cross-Platform / OS Compatibility Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Mobile Device Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Orientation (Portrait/Landscape) Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Layout and Alignment Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Typography and Font Consistency Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Content and Spelling Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Zoom / Text Scaling Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Localization Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Internationalization Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Visual Regression Testing",
+   "category": "UI and usability",
+   "applied": false
+  },
+  {
+   "name": "Performance Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Load Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Stress Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Spike Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Endurance (Soak) Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Volume Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Scalability Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Page Load Speed Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Low Bandwidth / Network Throttling Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Offline Behaviour Testing",
+   "category": "Performance",
+   "applied": false
+  },
+  {
+   "name": "Security Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Authentication Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Authorization / Access Control Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Password Policy Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Session Timeout Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "SQL Injection Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Cross-Site Scripting (XSS) Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "CSRF Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "HTTPS / SSL Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Security Headers Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Cookie Security Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Brute Force / Rate Limiting Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "File Upload Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Sensitive Data Exposure Testing",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Vulnerability Scanning",
+   "category": "Security",
+   "applied": false
+  },
+  {
+   "name": "Compatibility Testing",
+   "category": "Other",
+   "applied": false
+  },
+  {
+   "name": "Installation Testing",
+   "category": "Other",
+   "applied": false
+  },
+  {
+   "name": "Update / Upgrade Testing",
+   "category": "Other",
+   "applied": false
+  },
+  {
+   "name": "Recovery Testing",
+   "category": "Other",
+   "applied": false
+  },
+  {
+   "name": "Configuration Testing",
+   "category": "Other",
+   "applied": false
+  }
+ ]
+}
