@@ -5,7 +5,8 @@ Sarim's coursework repo for **CSSE 604 Software Testing (Morning Program 2026)**
 ## Rules
 - **Never commit or push.** Sarim commits and pushes himself so his GitHub contribution chart reflects his own schedule. Prepare changes in the working tree, then tell him what changed. If he asks for a commit, he will say so explicitly.
 - **Never throw work away.** Every change gets an entry in `CHANGELOG.md` (newest first, one entry per commit) so the history shows each step. Don't delete or silently overwrite files; git history keeps earlier versions, so no duplicate draft copies are needed.
-- **Pushing:** when Sarim says he wants to push, give him step-by-step commands, one commit per CHANGELOG entry, oldest first.
+- **Pushing:** when Sarim says he wants to push, give him step-by-step commands, one commit per CHANGELOG entry, oldest first, with `git push origin main` right after each commit, and finish with cleanup commands for the downloaded zip and extracted folder.
+- **Commands are for VS Code's terminal on Windows (PowerShell):** `Copy-Item`, `New-Item`, `$VAR = "..."`, `;` between commands — no bash-only syntax.
 - Keep the structure below and the repo clean: no stray files, build output only in `QA-Report/output/`. New coursework goes into `Assignments/` in its own numbered folder (`Assignments/03-<short-name>/`), with the brief and the submission side by side.
 - Submission file names follow the instructor's convention: `<complete seat number>_<Name>_<QA|QC|QM>` — both `.docx` and `.pdf`.
 
