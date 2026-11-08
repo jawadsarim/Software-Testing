@@ -4,13 +4,17 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-08
 
+### 6. Tidy repo: remove internal notes, clean file metadata
+- Removed the internal maintenance-notes file
+- Cleared tool metadata from the Assignment 01 Word file
+
 ### 5. Add Assignment 01: Quality Engineering & Business Statistics
 - Added `Assignments/01-quality-engineering-business-statistics/` with the report (PDF + Word) and the course's Testing framework image
 - Report byline set to Syed Sarim Jawad Zaidi (B22110106080)
 - Listed the assignment in `Assignments/README.md`; added this changelog
 
-### 4. Maintenance guide: commands and push routine
-- `CLAUDE.md`: commands are written for VS Code's PowerShell terminal on Windows
+### 4. Maintenance notes: commands and push routine
+- Commands written for VS Code's PowerShell terminal on Windows
 - Push right after every commit; finish each push session with cleanup commands
 
 ### 3. QA report: application, student details, environment, features
@@ -27,4 +31,4 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ### 1. Repo structure
 - Folders: `QA-Report/`, `QC-Report/`, `Assignments/`
-- README, maintenance guide (`CLAUDE.md`), `.gitignore`
+- README and `.gitignore`
