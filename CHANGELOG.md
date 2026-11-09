@@ -4,6 +4,13 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-09
 
+### 11. QA report: 78 bugs, all 100 techniques applied
+- Logged BUG-062 to BUG-078 (3 High, 31 Medium, 44 Low in total): keyboard focus, site search, Sitemap link, dealer list for cities without a dealer, mobile field accepting "e", form data lost on refresh, language and price formats, cookie flags, resume upload, cut-off captions, heading structure, image alt text, click-to-call and autocomplete
+- Techniques that cannot be applied lawfully or meaningfully to a live site (attacks, load testing, code-level testing, login testing on a site without a login) replaced with 20 techniques that were applied, such as redirects, 404 page, sitemap and robots.txt, back/forward navigation and HTML checks
+- Techniques applied without finding a defect now show the result in Appendix C
+- Layout: each bug's report on one page and its screenshots on the next page
+- Version snapshot v5 in `QA-Report/versions/`
+
 ### 10. QA report: 61 bugs (Booking Status, Find a Dealer, Online Booking)
 - Logged BUG-051 to BUG-061 (3 High, 27 Medium, 31 Low in total): Booking Status input validation and text, dealer phone formats and map location, missing Rawalpindi in the Test Drive city list, no confirmation after Online Booking submit, 12-digit mobile number accepted
 - 57 of 100 techniques applied

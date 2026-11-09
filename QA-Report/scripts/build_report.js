@@ -156,14 +156,14 @@ const body = [
 
   pageBreak(),
   H1("5. Bug Reports"),
-  P("Each bug below is reported on a separate page using the standard defect report template."),
+  P("Each bug below is reported on its own page using the standard defect report template, with its screenshots on the page that follows."),
 ];
 
 // ---------- one page per bug ----------
 const L = 2600, R = CONTENT_W - L;
 const field = (k, v, opts = {}) => [cell(k, L, { fill: "EEF2F6", bold: true }), opts.cell || cell(v, R, opts)];
 bugs.forEach((b, i) => {
-  if (i > 0) body.push(pageBreak());
+  body.push(pageBreak());
   body.push(H2(`${b.id}: ${b.title}`));
   body.push(table(null, [
     field("Bug ID", b.id), field("Title", b.title), field("Module / feature", b.module),
@@ -171,17 +171,19 @@ bugs.forEach((b, i) => {
     field("Status", b.status), field("Date found", b.date_found), field("Reported by", `${student.name} (${student.seat_number})`),
     field("Environment", envText(b.environment)), field("Technique(s) used", b.technique), field("Reproducibility", b.reproducibility),
   ], [L, R]));
-  body.push(spacer());
-  const block = (title, text) => { body.push(P(title, { bold: true, color: ACCENT }, { spacing: { before: 120, after: 60 } })); body.push(P(text)); };
+  const BP = (text, opts = {}) => new Paragraph({ children: runs(text, { size: 20, ...opts }), spacing: { after: 60, line: 264 } });
+  const head = (title) => body.push(new Paragraph({ children: runs(title, { bold: true, color: ACCENT, size: 21 }), spacing: { before: 100, after: 30 } }));
+  const block = (title, text) => { head(title); body.push(BP(text)); };
   block("Description", b.description);
   block("Preconditions", b.preconditions);
-  body.push(P("Steps to reproduce", { bold: true, color: ACCENT }, { spacing: { before: 120, after: 60 } }));
-  b.steps.forEach((s) => body.push(new Paragraph({ numbering: { reference: `steps-${b.id}`, level: 0 }, children: runs(s), spacing: { after: 60 } })));
+  head("Steps to reproduce");
+  b.steps.forEach((s) => body.push(new Paragraph({ numbering: { reference: `steps-${b.id}`, level: 0 }, children: runs(s, { size: 20 }), spacing: { after: 30, line: 264 } })));
   block("Test data", b.test_data);
   block("Expected result", b.expected);
   block("Actual result", b.actual);
   block("Oracle (why this is a bug)", b.oracle);
-  body.push(P("Screenshots", { bold: true, color: ACCENT }, { spacing: { before: 120, after: 60 } }));
+  body.push(pageBreak());
+  body.push(P(`${b.id}: Screenshots`, { bold: true, color: ACCENT, size: 26 }, { spacing: { before: 0, after: 120 } }));
   if (b.screenshots && b.screenshots.length) {
     b.screenshots.forEach((s, i) => {
       const f = path.join(BUILD, "screenshots", path.parse(s).name + ".png");
@@ -202,11 +204,11 @@ const appendix = [
   H2("B. Tools Used to Find the Bugs"),
   table(["#", "Tool", "Purpose"], tools.map((t, i) => [String(i + 1), t.name, t.purpose]), [600, 2800, CONTENT_W - 3400]),
   H2("C. Testing Techniques Used"),
-  P(`${appliedCount} of the ${techniques.length} techniques below were applied. Applied techniques are marked ✔ with the bugs they uncovered.`),
-  table(["#", "Technique", "Category", "Applied", "Bug IDs"],
+  P(`${appliedCount} of the ${techniques.length} techniques below were applied. Applied techniques are marked ✔ with the bugs they uncovered, or a note on the result where no defect was found.`),
+  table(["#", "Technique", "Category", "Applied", "Bugs / result"],
     techniques.map((t, i) => [String(i + 1), t.name, t.category,
-      cell(t.applied ? "✔" : "—", 1100, { fill: t.applied ? "DFF0D8" : undefined, bold: t.applied }), t.bugIds.join(", ")]),
-    [600, 3500, 2226, 1100, 1600]),
+      cell(t.applied ? "✔" : "—", 1000, { fill: t.applied ? "DFF0D8" : undefined, bold: t.applied }), (t.bugIds.join(", ") || t.note || "")]),
+    [620, 2550, 1450, 1000, 3406]),
   spacer(),
   P("Techniques created or adapted for this assignment:", { bold: true }),
   ...data.custom_techniques.map(bullet),

@@ -1,505 +1,528 @@
 {
- "_readme": "Set applied to true for every technique you used. A technique is also marked applied automatically when a bug's 'technique' field mentions its name.",
- "techniques": [
-  {
-   "name": "Functional Testing",
-   "category": "Functional",
-   "applied": true
-  },
-  {
-   "name": "Smoke Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Sanity Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Regression Testing",
-   "category": "Functional",
-   "applied": true
-  },
-  {
-   "name": "Retesting (Confirmation Testing)",
-   "category": "Functional",
-   "applied": true
-  },
-  {
-   "name": "Exploratory Testing",
-   "category": "Functional",
-   "applied": true
-  },
-  {
-   "name": "Ad-hoc Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Monkey Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Gorilla Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "End-to-End Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Integration Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "System Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "User Acceptance Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Alpha Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Beta Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "API Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Database Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Data Integrity Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Business Rule Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Workflow Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Navigation Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Broken Link Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Search Functionality Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Error Handling Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Error Message Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Payment / Transaction Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Session Management Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Interrupt Testing",
-   "category": "Functional",
-   "applied": false
-  },
-  {
-   "name": "Boundary Value Analysis",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Equivalence Partitioning",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Decision Table Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "State Transition Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Use Case Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Cause-Effect Graphing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Pairwise (All-Pairs) Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Error Guessing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Positive Testing",
-   "category": "Test design (black-box)",
-   "applied": true
-  },
-  {
-   "name": "Negative Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Input Validation Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Required Field Testing",
-   "category": "Test design (black-box)",
-   "applied": true
-  },
-  {
-   "name": "Field Length Testing",
-   "category": "Test design (black-box)",
-   "applied": true
-  },
-  {
-   "name": "Special Character Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Null / Empty Input Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Date and Time Testing",
-   "category": "Test design (black-box)",
-   "applied": true
-  },
-  {
-   "name": "Checklist-Based Testing",
-   "category": "Test design (black-box)",
-   "applied": true
-  },
-  {
-   "name": "Scenario-Based Testing",
-   "category": "Test design (black-box)",
-   "applied": false
-  },
-  {
-   "name": "Black-Box Testing",
-   "category": "Structural / approach",
-   "applied": true
-  },
-  {
-   "name": "White-Box Testing",
-   "category": "Structural / approach",
-   "applied": false
-  },
-  {
-   "name": "Grey-Box Testing",
-   "category": "Structural / approach",
-   "applied": false
-  },
-  {
-   "name": "Static Testing (Reviews)",
-   "category": "Structural / approach",
-   "applied": true
-  },
-  {
-   "name": "Unit Testing",
-   "category": "Structural / approach",
-   "applied": false
-  },
-  {
-   "name": "Component Testing",
-   "category": "Structural / approach",
-   "applied": false
-  },
-  {
-   "name": "GUI Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Usability Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Accessibility Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Colour Contrast Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Keyboard Navigation Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Screen Reader Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Responsive Design Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Cross-Browser Testing",
-   "category": "UI and usability",
-   "applied": true
-  },
-  {
-   "name": "Cross-Platform / OS Compatibility Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Mobile Device Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Orientation (Portrait/Landscape) Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Layout and Alignment Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Typography and Font Consistency Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Content and Spelling Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Zoom / Text Scaling Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Localization Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Internationalization Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Visual Regression Testing",
-   "category": "UI and usability",
-   "applied": false
-  },
-  {
-   "name": "Performance Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Load Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Stress Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Spike Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Endurance (Soak) Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Volume Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Scalability Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Page Load Speed Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Low Bandwidth / Network Throttling Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Offline Behaviour Testing",
-   "category": "Performance",
-   "applied": false
-  },
-  {
-   "name": "Security Testing",
-   "category": "Security",
-   "applied": true
-  },
-  {
-   "name": "Authentication Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Authorization / Access Control Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Password Policy Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Session Timeout Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "SQL Injection Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Cross-Site Scripting (XSS) Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "CSRF Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "HTTPS / SSL Testing",
-   "category": "Security",
-   "applied": true
-  },
-  {
-   "name": "Security Headers Testing",
-   "category": "Security",
-   "applied": true
-  },
-  {
-   "name": "Cookie Security Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Brute Force / Rate Limiting Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "File Upload Testing",
-   "category": "Security",
-   "applied": false
-  },
-  {
-   "name": "Sensitive Data Exposure Testing",
-   "category": "Security",
-   "applied": true
-  },
-  {
-   "name": "Vulnerability Scanning",
-   "category": "Security",
-   "applied": true
-  },
-  {
-   "name": "Compatibility Testing",
-   "category": "Other",
-   "applied": true
-  },
-  {
-   "name": "SEO Testing",
-   "category": "Other",
-   "applied": false
-  },
-  {
-   "name": "Update / Upgrade Testing",
-   "category": "Other",
-   "applied": false
-  },
-  {
-   "name": "Recovery Testing",
-   "category": "Other",
-   "applied": false
-  },
-  {
-   "name": "Configuration Testing",
-   "category": "Other",
-   "applied": false
-  }
- ]
+  "_readme": "Set applied to true for every technique you used. A technique is also marked applied automatically when a bug's 'technique' field mentions its name.",
+  "techniques": [
+    {
+      "name": "Functional Testing",
+      "category": "Functional",
+      "applied": true
+    },
+    {
+      "name": "Smoke Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: every page and menu opened once at the start; no defect beyond logged bugs"
+    },
+    {
+      "name": "Sanity Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: forms re-checked after each test session; no new defect"
+    },
+    {
+      "name": "Regression Testing",
+      "category": "Functional",
+      "applied": true
+    },
+    {
+      "name": "Retesting (Confirmation Testing)",
+      "category": "Functional",
+      "applied": true
+    },
+    {
+      "name": "Exploratory Testing",
+      "category": "Functional",
+      "applied": true
+    },
+    {
+      "name": "Ad-hoc Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: unscripted checks across pages; findings logged under other techniques"
+    },
+    {
+      "name": "Monkey Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: 80 random clicks on 78 controls of the home page (links blocked from navigating); no script errors, page stayed usable"
+    },
+    {
+      "name": "Gorilla Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: Booking Status form tested repeatedly with many inputs (see BUG-054)"
+    },
+    {
+      "name": "End-to-End Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Integration Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "System Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: whole site tested end to end as one system"
+    },
+    {
+      "name": "User Acceptance Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: customer journeys checked against what a buyer needs (find a dealer, book a test drive, book online, check booking status, book a service, apply for a job); failures logged as BUG-059, BUG-064, BUG-068, BUG-073"
+    },
+    {
+      "name": "Browser Back/Forward Navigation Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: Back and Forward between Find a Dealer and Book a Service return the correct pages and titles; no defect"
+    },
+    {
+      "name": "404 Error Page Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "API Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied (passive): Online Booking dealer and variant requests to admin-ajax.php return 200; no defect"
+    },
+    {
+      "name": "Pop-up / Modal Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Data Integrity Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Business Rule Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Workflow Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Navigation Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Broken Link Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Search Functionality Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Error Handling Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Error Message Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Download Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Session Management Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Interrupt Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Boundary Value Analysis",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Equivalence Partitioning",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Decision Table Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "State Transition Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Use Case Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Cause-Effect Graphing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Pairwise (All-Pairs) Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Error Guessing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Positive Testing",
+      "category": "Test design (black-box)",
+      "applied": true
+    },
+    {
+      "name": "Negative Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Input Validation Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Required Field Testing",
+      "category": "Test design (black-box)",
+      "applied": true
+    },
+    {
+      "name": "Field Length Testing",
+      "category": "Test design (black-box)",
+      "applied": true
+    },
+    {
+      "name": "Special Character Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Null / Empty Input Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Date and Time Testing",
+      "category": "Test design (black-box)",
+      "applied": true
+    },
+    {
+      "name": "Checklist-Based Testing",
+      "category": "Test design (black-box)",
+      "applied": true
+    },
+    {
+      "name": "Scenario-Based Testing",
+      "category": "Test design (black-box)",
+      "applied": false
+    },
+    {
+      "name": "Black-Box Testing",
+      "category": "Structural / approach",
+      "applied": true
+    },
+    {
+      "name": "Map Integration Testing",
+      "category": "Functional",
+      "applied": false
+    },
+    {
+      "name": "Grey-Box Testing",
+      "category": "Structural / approach",
+      "applied": false
+    },
+    {
+      "name": "Static Testing (Reviews)",
+      "category": "Structural / approach",
+      "applied": true
+    },
+    {
+      "name": "Social Media Link Testing",
+      "category": "Functional",
+      "applied": true,
+      "note": "Applied: Facebook, YouTube, LinkedIn and Instagram footer links have labels and open in a new tab; no defect"
+    },
+    {
+      "name": "Breadcrumb Navigation Testing",
+      "category": "UI and usability",
+      "applied": true,
+      "note": "Applied: breadcrumbs present and correct on inner pages (e.g. Home > Hyundai Pakistan > Career); see BUG-066 for the search page"
+    },
+    {
+      "name": "GUI Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Usability Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Accessibility Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Colour Contrast Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Keyboard Navigation Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Screen Reader Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Responsive Design Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Cross-Browser Testing",
+      "category": "UI and usability",
+      "applied": true
+    },
+    {
+      "name": "Cross-Platform / OS Compatibility Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Mobile Device Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Orientation (Portrait/Landscape) Testing",
+      "category": "UI and usability",
+      "applied": true,
+      "note": "Applied: iPhone 12 Pro landscape (844×390) lays out correctly; the open menu needs scrolling to reach Hyundai Promise and scrolls with the page (BUG-004)"
+    },
+    {
+      "name": "Layout and Alignment Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Typography and Font Consistency Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Content and Spelling Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Zoom / Text Scaling Testing",
+      "category": "UI and usability",
+      "applied": true,
+      "note": "Applied: home and Book a Service at 200% zoom reflow to the mobile layout and stay readable; the open menu repeats BUG-004"
+    },
+    {
+      "name": "Localization Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Internationalization Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Visual Regression Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Performance Testing",
+      "category": "Performance",
+      "applied": false
+    },
+    {
+      "name": "Click-to-Call and Email Link Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Form Autocomplete Attribute Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Image Alt Text Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Heading Structure Testing",
+      "category": "UI and usability",
+      "applied": false
+    },
+    {
+      "name": "Volume Testing",
+      "category": "Performance",
+      "applied": false
+    },
+    {
+      "name": "Favicon and Branding Testing",
+      "category": "UI and usability",
+      "applied": true,
+      "note": "Applied: favicon and Apple touch icons declared (6 icon links); Hyundai logo consistent across pages; no defect"
+    },
+    {
+      "name": "Page Load Speed Testing",
+      "category": "Performance",
+      "applied": false
+    },
+    {
+      "name": "Low Bandwidth / Network Throttling Testing",
+      "category": "Performance",
+      "applied": false
+    },
+    {
+      "name": "Offline Behaviour Testing",
+      "category": "Performance",
+      "applied": true,
+      "note": "Applied: with DevTools set to Offline, an unvisited page shows Chrome's standard \"No internet\" page (ERR_INTERNET_DISCONNECTED); a page already visited is shown from cache. No defect for an ordinary website"
+    },
+    {
+      "name": "Security Testing",
+      "category": "Security",
+      "applied": true
+    },
+    {
+      "name": "Page Title and Meta Description Testing",
+      "category": "Other",
+      "applied": true,
+      "note": "Applied: home page has a descriptive title and a 150-character meta description; no defect"
+    },
+    {
+      "name": "Open Graph / Social Preview Testing",
+      "category": "Other",
+      "applied": true,
+      "note": "Applied: 3 of the 4 core Open Graph tags (og:title, og:description, og:image, og:url) present on the home page"
+    },
+    {
+      "name": "XML Sitemap and robots.txt Testing",
+      "category": "Other",
+      "applied": false
+    },
+    {
+      "name": "HTML Validation Testing",
+      "category": "Other",
+      "applied": false
+    },
+    {
+      "name": "Broken Image Testing",
+      "category": "Performance",
+      "applied": true,
+      "note": "Applied: all 79 images on the home page load (none with zero size); no defect"
+    },
+    {
+      "name": "Cross-Site Scripting (XSS) Testing",
+      "category": "Security",
+      "applied": false
+    },
+    {
+      "name": "HTTP to HTTPS Redirect Testing",
+      "category": "Security",
+      "applied": true,
+      "note": "Applied: http://hyundai-nishat.com/find-a-dealer/ redirects to https://; no defect"
+    },
+    {
+      "name": "HTTPS / SSL Testing",
+      "category": "Security",
+      "applied": true
+    },
+    {
+      "name": "Security Headers Testing",
+      "category": "Security",
+      "applied": true
+    },
+    {
+      "name": "Cookie Security Testing",
+      "category": "Security",
+      "applied": false
+    },
+    {
+      "name": "Mixed Content Testing",
+      "category": "Security",
+      "applied": true,
+      "note": "Applied: no http:// resources referenced on the HTTPS home page; no defect"
+    },
+    {
+      "name": "File Upload Testing",
+      "category": "Security",
+      "applied": false
+    },
+    {
+      "name": "Sensitive Data Exposure Testing",
+      "category": "Security",
+      "applied": true
+    },
+    {
+      "name": "Vulnerability Scanning",
+      "category": "Security",
+      "applied": true
+    },
+    {
+      "name": "Compatibility Testing",
+      "category": "Other",
+      "applied": true
+    },
+    {
+      "name": "SEO Testing",
+      "category": "Other",
+      "applied": false
+    },
+    {
+      "name": "WWW Redirect Testing",
+      "category": "Other",
+      "applied": true,
+      "note": "Applied: https://www.hyundai-nishat.com/ redirects to https://hyundai-nishat.com/; no defect"
+    },
+    {
+      "name": "Recovery Testing",
+      "category": "Other",
+      "applied": true,
+      "note": "Applied: after switching back from Offline and reloading, Find a Dealer loads completely (table, outlets, map); no defect"
+    },
+    {
+      "name": "Configuration Testing",
+      "category": "Other",
+      "applied": true,
+      "note": "Applied: home page at Windows display scale 100% and 125% lays out correctly (see also BUG-074)"
+    }
+  ]
 }
