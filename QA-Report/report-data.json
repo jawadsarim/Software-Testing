@@ -2208,6 +2208,566 @@
       "screenshots": [
         "bug78-autocomplete.png"
       ]
+    },
+    {
+      "id": "BUG-079",
+      "title": "Easy Own: SONATA 2.5 instalment figures are wrong: admin charges added twice",
+      "module": "Hyundai Easy Own",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Business Rule Testing, Static Testing (Reviews)",
+      "description": "For SONATA 2.5 (PKR 11,545,000, 50% down payment = 5,772,500) the \"Balance Payable of Price\" column shows 5,972,500 and 6,072,500 instead of 5,772,500, i.e. the admin charges are already included. The next column adds the admin charges again (6,172,500 and 6,372,500). The monthly instalments (331,806 × 18 = 5,972,500; 253,021 × 24 = 6,072,500) match neither total column. Every other model in the table calculates correctly.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com",
+        "Click Hyundai Easy Own",
+        "Find the SONATA 2.5 row",
+        "Check: price − down payment = balance; balance + admin = total; total ÷ tenure = monthly"
+      ],
+      "test_data": "SONATA 2.5: 11,545,000; 50%; admin 200,000 (18 months) and 300,000 (24 months)",
+      "expected": "Balance 5,772,500 for both tenures; totals 5,972,500 and 6,072,500, matching 331,806 × 18 and 253,021 × 24.",
+      "actual": "Balance 5,972,500 / 6,072,500; totals 6,172,500 / 6,372,500, which do not match the monthly instalments.",
+      "oracle": "Arithmetic oracle and consistency with the other rows of the same table. Wrong financing figures on a PKR 11.5 million purchase mislead customers about what they will pay.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug79-easyown-sonata.png"
+      ]
+    },
+    {
+      "id": "BUG-080",
+      "title": "WordPress default \"Sample Page\" (bike messenger, piña coladas) is live and listed in the sitemap",
+      "module": "Whole site (content)",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Static Testing (Reviews), Content and Spelling Testing, XML Sitemap and robots.txt Testing",
+      "description": "https://hyundai-nishat.com/sample-page/ shows WordPress's default demo text under the Hyundai header: \"Hi there! I'm a bike messenger by day, aspiring actor by night… I live in Los Angeles, have a great dog named Jack, and I like piña coladas.\" The page is listed in page-sitemap.xml, so search engines are invited to index it.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/sample-page/",
+        "Read the page",
+        "Open https://hyundai-nishat.com/page-sitemap.xml and search for sample-page"
+      ],
+      "test_data": "None",
+      "expected": "Default CMS pages deleted before go-live; only real content published and listed in the sitemap.",
+      "actual": "WordPress demo text published under the Hyundai brand and listed in the sitemap.",
+      "oracle": "Release checklist and brand-consistency oracle: placeholder content on a corporate site looks unprofessional and appears in search results.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug80-sample-page.png"
+      ]
+    },
+    {
+      "id": "BUG-081",
+      "title": "A public \"Test\" page with a test contact form is live and listed in the sitemap",
+      "module": "Whole site (content)",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Static Testing (Reviews), Security Testing, Error Guessing",
+      "description": "https://hyundai-nishat.com/test/ (breadcrumb \"Home > Test\") shows an unstyled default contact form (Your name, Your email, Subject, Your message). It is listed in page-sitemap.xml. A leftover test form may still deliver messages to an unmonitored inbox and is an easy spam target.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/test/"
+      ],
+      "test_data": "None (form not submitted)",
+      "expected": "Test pages removed or blocked before release.",
+      "actual": "A test page with a working-looking form is public.",
+      "oracle": "Release checklist: test artefacts must not ship to production. Unmonitored forms are a spam and data-handling risk.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug81-test-page.png"
+      ]
+    },
+    {
+      "id": "BUG-082",
+      "title": "Blank developer page \"No Header Footer\" is live and listed in the sitemap",
+      "module": "Whole site (content)",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Static Testing (Reviews), Broken Link Testing",
+      "description": "https://hyundai-nishat.com/no-header-footer/ shows only the words \"No Header Footer\" in default black serif text on a white page, with no site header, footer or navigation. It is listed in page-sitemap.xml.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/no-header-footer/"
+      ],
+      "test_data": "None",
+      "expected": "Template or test pages are not published.",
+      "actual": "An empty developer template page is public and indexed.",
+      "oracle": "Release checklist: unused templates should be removed; users or search engines landing here see a broken-looking page with no way back.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug82-no-header-footer.png"
+      ]
+    },
+    {
+      "id": "BUG-083",
+      "title": "Same press release published twice (\"…financing facilities to customers\" and \"…-2\")",
+      "module": "Press releases",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Static Testing (Reviews)",
+      "description": "The December 2019 press release about bank financing partnerships exists at two URLs, the second ending in \"-2\". Both have the same headline and the same date (Dec 02, 2019) and both are in press-sitemap.xml.",
+      "preconditions": "None",
+      "steps": [
+        "Open /press/collaboration-between-hyundai-nishat-motor-private-limited-and-leading-banks-to-provide-special-car-financing-facilities-to-customers/",
+        "Open the same URL ending in -2/",
+        "Compare headline and date"
+      ],
+      "test_data": "None",
+      "expected": "One page per press release.",
+      "actual": "Two near-identical pages with the same headline and date.",
+      "oracle": "Duplicate content confuses readers and search engines (duplicate titles split ranking).",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug83-duplicate-press.png"
+      ]
+    },
+    {
+      "id": "BUG-084",
+      "title": "126 pages have no meta description; Press Release and Culture pages have no main heading",
+      "module": "Whole site (SEO)",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "SEO Testing, Page Title and Meta Description Testing, Heading Structure Testing",
+      "description": "A read-only crawl of the 211 pages in the site's own sitemap found 126 pages with no meta description (including the genuine-parts pages and /feedback/). /press/ and /our-culture/ have no <h1>. Two different pages share the title \"Pre Booking Open Now - Hyundai Nishat\".",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/sitemap_index.xml",
+        "Open each listed page and check <meta name=\"description\">, <h1> and <title>"
+      ],
+      "test_data": "211 URLs from the sitemap",
+      "expected": "Every public page has a unique title, a meta description and one <h1>.",
+      "actual": "126 pages without a description; 2 without an <h1>; a duplicate title.",
+      "oracle": "SEO good practice (Google Search Central): titles and descriptions should be unique and present on each page; they form the search-result snippet.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug84-meta-description.png"
+      ]
+    },
+    {
+      "id": "BUG-085",
+      "title": "\"New vehicle coming soon\" page sends visitors to the developer's staging server, which fails",
+      "module": "Whole site",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Navigation Testing, Broken Link Testing, Security Testing",
+      "description": "https://hyundai-nishat.com/new-vehicle-coming-soon/ is listed in page-sitemap.xml. Opening it redirects the browser to hyundai-nishat.dev.crewlogix.com, the web developer's staging server, which does not load (Chrome error page). This exposes the development environment's address and leaves the page broken.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/new-vehicle-coming-soon/",
+        "Look at the address and page title Chrome shows"
+      ],
+      "test_data": "None",
+      "expected": "The page loads on hyundai-nishat.com, or is removed from the sitemap.",
+      "actual": "Redirect to hyundai-nishat.dev.crewlogix.com and a Chrome error page.",
+      "oracle": "Production pages must not point to staging hosts (OWASP: information exposure; release checklist). Related to BUG-003, which exposes the same developer's email.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug85-dev-redirect.png"
+      ]
+    },
+    {
+      "id": "BUG-086",
+      "title": "\"Pre Booking Open Now\" page for the TUCSON Hybrid is still live 18 months after launch",
+      "module": "Pre-booking page",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Content and Spelling Testing",
+      "description": "/pre-booking/ still invites customers to pre-book \"The All New Hyundai TUCSON Hybrid 2025\" with a booking form, but the site's own press release dated May 7, 2025 announces that the TUCSON Hybrid has launched across Pakistan.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/pre-booking/",
+        "Open Press Release and find the TUCSON Hybrid launch (May 7, 2025)"
+      ],
+      "test_data": "None",
+      "expected": "Expired campaign pages removed or redirected to the current model page / Online Booking.",
+      "actual": "\"Pre Booking Open Now\" with a live form for a car launched in May 2025.",
+      "oracle": "Consistency oracle: two pages of the same site contradict each other; outdated offers mislead customers.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug86-pre-booking.png",
+        "bug86-panel.png"
+      ]
+    },
+    {
+      "id": "BUG-087",
+      "title": "Feedback form requires a registration or PBO number (and a home address) before anyone can send feedback",
+      "module": "Feedback form",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Required Field Testing, Usability Testing, Business Rule Testing",
+      "description": "On Contact Us > Feedback, \"Reg No / PBO #\" and \"Address\" are both mandatory. A person who has not bought a car (for example after a bad test drive or showroom visit) has no registration or PBO number and cannot submit a complaint, suggestion or query.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/feedback/",
+        "Look at the required (*) fields"
+      ],
+      "test_data": "None (form not submitted)",
+      "expected": "Only name, a contact method and the message required; Reg No / PBO optional.",
+      "actual": "Reg No / PBO # * and Address * are required.",
+      "oracle": "Feedback channels should be open to all customers; unnecessary required fields block the task and collect more personal data than needed.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug87-feedback-required.png"
+      ]
+    },
+    {
+      "id": "BUG-088",
+      "title": "Feedback form lists old models (Staria, \"Elantra\", \"Tucson\") and misses current ones (Palisade, IONIQ 5/6, hybrids)",
+      "module": "Feedback form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Equivalence Partitioning",
+      "description": "The Model list on the Feedback form offers Elantra, Sonata, Tucson, Santa Fe, Staria, Porter H100 and Other. Current models such as Palisade Hybrid, IONIQ 5, IONIQ 6, Elantra Hybrid and Sonata N Line are missing, while Staria is not in the current line-up.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/feedback/",
+        "Open the Model list",
+        "Compare with Find a Car"
+      ],
+      "test_data": "None",
+      "expected": "The same model list as Find a Car.",
+      "actual": "An outdated list of 6 models plus Other.",
+      "oracle": "Consistency oracle with the site's own Find a Car menu (same problem as BUG-022 on Book a Service).",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug88-89-feedback-lists.png"
+      ]
+    },
+    {
+      "id": "BUG-089",
+      "title": "Feedback form City list has 13 cities and Dealership list 23 dealers, although the site lists 27 dealers",
+      "module": "Feedback form",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Equivalence Partitioning",
+      "description": "The City list omits cities that have dealers (Rawalpindi, Gujrat, Mardan, Hyderabad, Sukkur), and the Dealership list omits Hyundai Blue, Mardan, Hyderabad and Sukkur that appear on Find a Dealer. The dealer list is also not filtered by the chosen city.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/feedback/",
+        "Open City and Dealership name",
+        "Compare with Find a Dealer (27 dealers)"
+      ],
+      "test_data": "None",
+      "expected": "Every city and dealer from Find a Dealer available, with dealers filtered by city.",
+      "actual": "13 cities, 23 dealers, no filtering.",
+      "oracle": "Consistency with Find a Dealer; customers of the missing dealers cannot direct feedback correctly.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug88-89-feedback-lists.png"
+      ]
+    },
+    {
+      "id": "BUG-090",
+      "title": "Used-car listing gives two different phone numbers: buttons call 0325-5557080, text says 0325-5556046",
+      "module": "Hyundai Promise – vehicle listing",
+      "severity": "Medium",
+      "priority": "P2",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Click-to-Call and Email Link Testing",
+      "description": "On the Hyundai Promise listing for the Tucson 2.0 AWD, the Call and WhatsApp buttons use +92 325 5557080, but the description says \"Contact # 0325-5556046\". A buyer cannot tell which number is correct.",
+      "preconditions": "None",
+      "steps": [
+        "Open Hyundai Promise > Browse Vehicles > Tucson 2.0 AWD",
+        "Inspect the Call and WhatsApp buttons",
+        "Read the Contact # line in Description"
+      ],
+      "test_data": "Listing: Tucson 2.0 AWD, PKR 7,300,000",
+      "expected": "One contact number used everywhere on the listing.",
+      "actual": "Buttons: 0325-5557080; description: 0325-5556046.",
+      "oracle": "Consistency oracle: the same listing must not contradict itself; a wrong number loses the sale.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug90-91-listing.png",
+        "bug90-92-listing-links.png"
+      ]
+    },
+    {
+      "id": "BUG-091",
+      "title": "Used-car listing description labels the model as \"Make\" and the year as \"Model\"",
+      "module": "Hyundai Promise – vehicle listing",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Data Integrity Testing",
+      "description": "The description reads \"Make: Tucson 2.0 AWD\" and \"Model: 2022\". The make is Hyundai, the model is Tucson 2.0 AWD and 2022 is the year; the Specifications box on the same page labels them correctly (Model: Tucson 2.0, Year: 2022).",
+      "preconditions": "None",
+      "steps": [
+        "Open the Tucson 2.0 AWD listing",
+        "Compare the Description with the Specifications box"
+      ],
+      "test_data": "None",
+      "expected": "Make: Hyundai; Model: Tucson 2.0 AWD; Year: 2022.",
+      "actual": "Make: Tucson 2.0 AWD; Model: 2022.",
+      "oracle": "Consistency with the Specifications box on the same page and with standard vehicle-listing terms.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug90-91-listing.png"
+      ]
+    },
+    {
+      "id": "BUG-092",
+      "title": "Used-car \"Download Brochure\" button goes through a third-party link shortener (2ly.link)",
+      "module": "Hyundai Promise – vehicle listing",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Security Testing, Download Testing",
+      "description": "The Download Brochure button on the listing links to https://2ly.link/1tUwd instead of a file on hyundai-nishat.com. Users cannot see where the link leads before clicking, and the brochure depends on a third-party service.",
+      "preconditions": "None",
+      "steps": [
+        "Open the Tucson 2.0 AWD listing",
+        "Hover over or inspect Download Brochure"
+      ],
+      "test_data": "None",
+      "expected": "A direct link to a brochure hosted on hyundai-nishat.com.",
+      "actual": "Link to the shortener 2ly.link.",
+      "oracle": "Security awareness guidance: shortened links hide their destination and are a common phishing pattern; official downloads should come from the official domain.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug90-92-listing-links.png"
+      ]
+    },
+    {
+      "id": "BUG-093",
+      "title": "Price-list PDFs have no date or validity period",
+      "module": "Find a Car – price lists",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Download Testing, Data Integrity Testing",
+      "description": "The price lists linked from the model pages (e.g. Sonata, uploaded July 2025; Palisade Hybrid \"Launch\", September 2026) are headed only \"Hyundai - HNMPL Price List(s)\" with no issue date or \"valid from\" date. The terms say prices are \"subject to change without prior notice\".",
+      "preconditions": "None",
+      "steps": [
+        "Open the Sonata page and click Price List",
+        "Open the Palisade Hybrid price list",
+        "Look for an issue or validity date"
+      ],
+      "test_data": "None",
+      "expected": "Each price list shows its issue date or the date from which prices apply.",
+      "actual": "No date anywhere on the documents.",
+      "oracle": "Customers and dealers need to know whether a price list is current; an undated price document cannot be checked against later changes.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug93-price-list-no-date.png"
+      ]
+    },
+    {
+      "id": "BUG-094",
+      "title": "Easy Own page omits the IONIQ 5 and IONIQ 6 instalment plans shown in their price list",
+      "module": "Hyundai Easy Own",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Business Rule Testing",
+      "description": "The IONIQ 5 and 6 price list offers 18-, 24- and 30-month plans (e.g. IONIQ 5 Smart: 30% down, PKR 891,667 per month), but the Hyundai Easy Own page, the site's instalment page, lists only six variants of ELANTRA Hybrid, TUCSON Hybrid, SANTA FE Hybrid and SONATA 2.5. The IONIQ plans' arithmetic itself is correct.",
+      "preconditions": "None",
+      "steps": [
+        "Open the IONIQ 5 page and click Price List",
+        "Open Hyundai Easy Own and select All Models"
+      ],
+      "test_data": "None",
+      "expected": "Easy Own lists every model with an instalment plan.",
+      "actual": "IONIQ 5/6 plans appear only inside the PDF.",
+      "oracle": "Consistency oracle between two official sources for the same offer.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug94-ioniq-emi.png",
+        "bug79-easyown-sonata.png"
+      ]
+    },
+    {
+      "id": "BUG-095",
+      "title": "Legal Disclaimer claims to govern Hyundai's global site www.hyundai.com",
+      "module": "Legal Disclaimer",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing, Static Testing (Reviews)",
+      "description": "Clause 1 says \"These General Conditions regulate the access and use of the service of the website www.hyundai-nishat.com and www.hyundai.com\". www.hyundai.com is Hyundai Motor Company's global site, which the Pakistani distributor does not operate.",
+      "preconditions": "None",
+      "steps": [
+        "Open the footer link Legal Disclaimer",
+        "Read clause 1"
+      ],
+      "test_data": "None",
+      "expected": "The terms name only the sites Hyundai Nishat operates.",
+      "actual": "The terms also claim to cover www.hyundai.com.",
+      "oracle": "Legal text must describe its real scope; a wrong scope makes the terms unreliable.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug95-legal-disclaimer.png"
+      ]
+    },
+    {
+      "id": "BUG-096",
+      "title": "Cookie Policy is generic: it never names the cookies the site sets or how to refuse them",
+      "module": "Cookie Policy",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Cookie Security Testing, Content and Spelling Testing",
+      "description": "The Cookie Policy only explains cookie types in general (own/third-party, session/persistent). It does not mention Google Analytics, the _ga cookies or the site's own vx_user cookie found in BUG-072, and gives no way to accept or refuse them.",
+      "preconditions": "None",
+      "steps": [
+        "Open the footer link Cookie Policy",
+        "Search the text for _ga, vx_user, Google Analytics or consent"
+      ],
+      "test_data": "None",
+      "expected": "A list of the cookies used, their purpose and duration, and how to opt out.",
+      "actual": "Generic definitions only; none of the four cookies is named.",
+      "oracle": "A cookie policy exists to tell users which cookies are set; compare with the cookies actually set (BUG-072).",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug96-cookie-policy.png"
+      ]
+    },
+    {
+      "id": "BUG-097",
+      "title": "24 genuine-parts pages have placeholder titles (\"Otherparts Sub01 – Hyundai Nishat\")",
+      "module": "Genuine Parts",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Page Title and Meta Description Testing, SEO Testing",
+      "description": "Each \"Other Parts\" page has a <title> such as \"Otherparts Sub01 - Hyundai Nishat\" instead of the part name shown on the page (e.g. ARM COMPLETE-FR LWR, LH). This text appears on the browser tab, in bookmarks and in search results.",
+      "preconditions": "None",
+      "steps": [
+        "Open Genuine Parts > Other Parts and open a part",
+        "Look at the browser tab title"
+      ],
+      "test_data": "/otherparts-sub01/ … /otherparts-sub24/",
+      "expected": "Title = part name, e.g. \"Arm Complete-FR LWR, LH | Genuine Parts | Hyundai Nishat\".",
+      "actual": "\"Otherparts Sub01 - Hyundai Nishat\" … \"Otherparts Sub24 …\".",
+      "oracle": "Titles identify a page in tabs and search results; internal slugs as titles are a CMS setup mistake.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug97-parts-titles.png",
+        "bug97-98-parts-page.png"
+      ]
+    },
+    {
+      "id": "BUG-098",
+      "title": "Genuine-parts pages repeat the same broken sentence: \"is design and engineered… upon trouble-free driving\"",
+      "module": "Genuine Parts",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Content and Spelling Testing",
+      "description": "The part pages use a template sentence with grammar errors: \"Only Genuine Hyundai [part] is design and engineered specifically for your Hyundai vehicle; upon trouble-free driving, always ask for genuine Hyundai [part].\" It appears on every part page sampled.",
+      "preconditions": "None",
+      "steps": [
+        "Open any Other Parts page",
+        "Read the paragraph under Genuine Parts"
+      ],
+      "test_data": "None",
+      "expected": "\"…is designed and engineered specifically for your Hyundai vehicle. For trouble-free driving, always ask for genuine Hyundai parts.\"",
+      "actual": "\"is design and engineered\"; \"upon trouble-free driving\".",
+      "oracle": "Standard English grammar; repeated across 24 pages, so one template fix corrects all of them.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug97-98-parts-page.png"
+      ]
+    },
+    {
+      "id": "BUG-099",
+      "title": "Expired, undated \"Grand Starex Special offer\" is still published",
+      "module": "Press releases",
+      "severity": "Low",
+      "priority": "P4",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Data Integrity Testing, Content and Spelling Testing",
+      "description": "/press/grand-starex-special-offer/ promises every new Starex buyer a free 10-inch AVN system and free maintenance up to 25,000 km, \"valid for limited time period\", with no date. The Grand Starex is no longer in the line-up. The list items also show a literal \"o\" instead of bullets.",
+      "preconditions": "None",
+      "steps": [
+        "Open https://hyundai-nishat.com/press/grand-starex-special-offer/"
+      ],
+      "test_data": "None",
+      "expected": "Expired offers removed or clearly marked with their dates.",
+      "actual": "An undated offer for a discontinued model, with stray \"o\" bullets.",
+      "oracle": "Advertising an offer that no longer exists misleads customers; offers need validity dates.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug99-starex-offer.png"
+      ]
+    },
+    {
+      "id": "BUG-100",
+      "title": "Press Release page shows only the latest 16 of 53 press releases, with no archive or paging",
+      "module": "Press releases",
+      "severity": "Low",
+      "priority": "P3",
+      "status": "New",
+      "date_found": "9 Nov 2026",
+      "environment": "ENV-1",
+      "technique": "Navigation Testing, Search Functionality Testing",
+      "description": "The site has 53 press pages (press-sitemap.xml), but the Press Release page lists only the 16 newest and has no pagination, archive or year filter. The other 37 (e.g. Porter H-100 A/C, Grand Starex offer) can be reached only through search engines or the XML sitemap.",
+      "preconditions": "None",
+      "steps": [
+        "Open Press Release in the menu",
+        "Scroll to the end of the list",
+        "Compare with https://hyundai-nishat.com/press-sitemap.xml"
+      ],
+      "test_data": "None",
+      "expected": "All press releases reachable from the Press Release page (paging or an archive).",
+      "actual": "16 shown; 37 unreachable from the site's navigation.",
+      "oracle": "Navigation completeness: published content should be reachable from the site's own navigation.",
+      "reproducibility": "Always",
+      "screenshots": [
+        "bug100-press-archive.png"
+      ]
     }
   ]
 }

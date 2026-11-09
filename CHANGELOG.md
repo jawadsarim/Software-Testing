@@ -4,6 +4,11 @@ Every change to this repo, newest first, so the history shows how the work was b
 
 ## 2026-11-09
 
+### 12. QA report: 100 bugs
+- Logged BUG-079 to BUG-100 (3 High, 37 Medium, 60 Low in total) from a read-only crawl of all 211 pages in the site's sitemap and checks of Easy Own, Hyundai Promise, the Feedback form, price lists, legal pages, genuine-parts pages and press releases
+- Main finds: SONATA 2.5 instalment figures wrong, WordPress sample page and a test page published, a page redirecting to the developer's staging server, conflicting phone numbers on a used-car listing
+- Version snapshot v6 in `QA-Report/versions/`
+
 ### 11. QA report: 78 bugs, all 100 techniques applied
 - Logged BUG-062 to BUG-078 (3 High, 31 Medium, 44 Low in total): keyboard focus, site search, Sitemap link, dealer list for cities without a dealer, mobile field accepting "e", form data lost on refresh, language and price formats, cookie flags, resume upload, cut-off captions, heading structure, image alt text, click-to-call and autocomplete
 - Techniques that cannot be applied lawfully or meaningfully to a live site (attacks, load testing, code-level testing, login testing on a site without a login) replaced with 20 techniques that were applied, such as redirects, 404 page, sitemap and robots.txt, back/forward navigation and HTML checks
